@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/AITurnBased.cs">
+    <Files>
+      <File FileName="Assets/Subfacet/CameraMovement.cs" Line="25" Column="31" />
+      <File FileName="Assets/AstarPathfindingProject/Core/AstarPath.cs" Line="1" Column="1" />
+      <File FileName="Assets/Subfacet/MyAIPath.cs" Line="49" Column="2" />
+      <File FileName="Assets/AITurnBased.cs" Line="23" Column="21" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
