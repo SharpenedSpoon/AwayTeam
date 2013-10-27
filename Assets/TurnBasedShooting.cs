@@ -9,6 +9,10 @@ public class TurnBasedShooting : MonoBehaviour {
 	private GridGraph gridGraph;
 	private RaycastHit hit;
 	private PlayMakerFSM fsm;
+	private PlayMakerFSM targetFsm;
+	private GameObject targetObject;
+	private Vector3[] aimingLine;
+	private Color aimingColor;
 	public Transform target = null;
 	// Use this for initialization
 	void Start () {
@@ -16,6 +20,9 @@ public class TurnBasedShooting : MonoBehaviour {
 		//gridGraph = aStarPath.astarData.gridGraph;
 		gridGraph = AstarPath.active.astarData.gridGraph;
 		fsm = GetComponent<PlayMakerFSM>();
+		if (target != null) {
+			targetFsm = target.GetComponent<PlayMakerFSM>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -23,22 +30,37 @@ public class TurnBasedShooting : MonoBehaviour {
 		if (target == null) {
 			return;
 		}
-		Debug.Log(fsm.FsmVariables.GetFsmBool("IsAiming").Value);
 		if (fsm.FsmVariables.GetFsmBool("IsAiming").Value) {
 			if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100.0f))
 				return;
 			if (hit.rigidbody != target.rigidbody) {
 				target.transform.position = hit.point;
 			}
-			if (gridGraph.Linecast(transform.position, target.transform.position)) {
-				//fsm.FsmVariables.FindFsmBool("IsAiming").Value = true;
+			aimingLine = new Vector3[2];
+			aimingLine[0] = objectMidpoint(transform);
+			if (targetFsm.FsmVariables.GetFsmBool("ValidTarget").Value) {
+				targetObject = targetFsm.FsmVariables.GetFsmGameObject("TargetObject").Value;
+				aimingLine[1] = objectMidpoint(targetObject.transform);
+				aimingColor = Color.green;
+			} else {
+				targetObject = null;
+				aimingLine[1] = target.transform.position;
+				aimingColor = Color.red;
 			}
-		} else if (fsm.FsmVariables.GetFsmBool("IsShooting").Value) {
-			var shootRay = new Vector3[2];
-			shootRay[0] = transform.position;
-			shootRay[1] = target.transform.position;
-			//var shootRay = new Array(transform.position, target.transform.position);
-			VectorLine.SetLine3D(Color.green, 0.01f, shootRay);
+			VectorLine.SetLine3D(aimingColor, 0.01f, aimingLine);
+			/*if (gridGraph.Linecast(transform.position, target.transform.position)) {
+				fsm.FsmVariables.FindFsmBool("ValidAimTarget").Value = true;
+			} else {
+				fsm.FsmVariables.FindFsmBool("ValidAimTarget").Value = false;
+			}
+		} else if (fsm.FsmVariables.GetFsmBool("IsShooting").Value) {*/
 		}
+	}
+	
+	private Vector3 objectMidpoint(Transform trans) {
+		Vector3 pos = trans.position;
+		Vector3 scl = trans.lossyScale;
+		pos.y = pos.y + (float) 0.5*scl.y;
+		return pos;
 	}
 }
