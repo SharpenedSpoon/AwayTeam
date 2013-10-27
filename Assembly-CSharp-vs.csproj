@@ -905,9 +905,10 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
-     <Compile Include="Assets\_SubfacetFiles\AITurnBased.cs" />
+     <Compile Include="Assets\TurnBasedShooting.cs" />
      <Compile Include="Assets\_SubfacetFiles\Subfacet\CameraMovement.cs" />
      <Compile Include="Assets\_SubfacetFiles\Subfacet\MyAIPath.cs" />
+     <Compile Include="Assets\_SubfacetFiles\TurnBasedMovement.cs" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\GameAssets\Photon Unity Networking\PlayMaker\ReleaseNotes.txt" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Editor\EditorAssets\Materials\Navmesh2.shader" />

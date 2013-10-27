@@ -591,13 +591,13 @@ MonoBehaviour:
         tooltip: 
         showInInspector: 0
         networkSync: 0
-        value: .0500000007
+        value: .0799999982
       - useVariable: 1
         name: btn_left
         tooltip: 
         showInInspector: 0
         networkSync: 0
-        value: .460000008
+        value: .899999976
       - useVariable: 1
         name: btn_top
         tooltip: 

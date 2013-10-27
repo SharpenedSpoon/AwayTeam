@@ -3,7 +3,7 @@ using System.Collections;
 using Vectrosity;
 using HutongGames.PlayMaker;
 
-public class AITurnBased : AIPath {
+public class TurnBasedMovement : AIPath {
 	private bool planningMovement;
 	private bool isMoving;
 	private PlayMakerFSM fsm;
