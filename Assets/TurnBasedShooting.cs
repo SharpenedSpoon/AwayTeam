@@ -5,7 +5,7 @@ using Vectrosity;
 using HutongGames.PlayMaker;
 
 public class TurnBasedShooting : MonoBehaviour {
-	private AstarPath aStarPath;
+	//private AstarPath aStarPath;
 	private GridGraph gridGraph;
 	private RaycastHit hit;
 	private PlayMakerFSM fsm;
