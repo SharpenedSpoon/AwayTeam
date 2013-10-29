@@ -35,14 +35,17 @@ public class TurnBasedShooting : MonoBehaviour {
 				return;
 			if (hit.rigidbody != target.rigidbody) {
 				target.transform.position = hit.point;
+				target.transform.position = new Vector3(target.transform.position.x, Terrain.activeTerrain.SampleHeight(target.transform.position), target.transform.position.z);
 			}
 			aimingLine = new Vector3[2];
 			aimingLine[0] = objectMidpoint(transform);
 			if (targetFsm.FsmVariables.GetFsmBool("ValidTarget").Value) {
+				fsm.FsmVariables.GetFsmBool("ValidAimTarget").Value = true;
 				targetObject = targetFsm.FsmVariables.GetFsmGameObject("TargetObject").Value;
 				aimingLine[1] = objectMidpoint(targetObject.transform);
 				aimingColor = Color.green;
 			} else {
+				fsm.FsmVariables.GetFsmBool("ValidAimTarget").Value = false;
 				targetObject = null;
 				aimingLine[1] = target.transform.position;
 				aimingColor = Color.red;
