@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CharacterMeta.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\AIPath.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\Seeker.cs" />

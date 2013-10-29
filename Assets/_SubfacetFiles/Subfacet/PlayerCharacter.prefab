@@ -677,7 +677,7 @@ MonoBehaviour:
           name: NextMovePhase
           isSystemEvent: 0
           isGlobal: 0
-        toState: Active - Move
+        toState: Active - Check Valid Move
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -1042,7 +1042,7 @@ MonoBehaviour:
           name: NextShootPhase
           isSystemEvent: 0
           isGlobal: 0
-        toState: Active - Shoot
+        toState: Active - Check Valid Aim
         linkStyle: 0
         linkConstraint: 0
         colorIndex: 0
@@ -1356,6 +1356,132 @@ MonoBehaviour:
         - everyFrame
         paramDataPos: 000000000100000000000000
         paramByteDataSize: 000000000000000001000000
+    - name: Active - Check Valid Aim
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 1175
+        y: 319
+        width: 176
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: FailCheck
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Active - Aim
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: SucceedCheck
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Active - Shoot
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.BoolTest
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 3334d172
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        byteData: 000156616c696441696d54617267657453756363656564436865636b4661696c436865636b00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 11000000170000001700000001000000
+        paramName:
+        - boolVariable
+        - isTrue
+        - isFalse
+        - everyFrame
+        paramDataPos: 00000000100000001c00000025000000
+        paramByteDataSize: 100000000c0000000900000001000000
+    - name: Active - Check Valid Move
+      description: 
+      colorIndex: 0
+      position:
+        serializedVersion: 2
+        x: 1197
+        y: 127
+        width: 184
+        height: 48
+      isBreakpoint: 0
+      isSequence: 0
+      hideUnused: 0
+      transitions:
+      - fsmEvent:
+          name: SucceedCheck
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Active - Move
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      - fsmEvent:
+          name: FailCheck
+          isSystemEvent: 0
+          isGlobal: 0
+        toState: Active - Plan Move
+        linkStyle: 0
+        linkConstraint: 0
+        colorIndex: 0
+      actionData:
+        actionNames:
+        - HutongGames.PlayMaker.Actions.BoolTest
+        customNames:
+        - 
+        actionEnabled: 01
+        actionIsOpen: 01
+        actionStartIndex: 00000000
+        actionHashCodes: 3334d172
+        unityObjectParams: []
+        fsmGameObjectParams: []
+        fsmOwnerDefaultParams: []
+        animationCurveParams: []
+        functionCallParams: []
+        fsmTemplateControlParams: []
+        fsmEventTargetParams: []
+        fsmPropertyParams: []
+        layoutOptionParams: []
+        fsmStringParams: []
+        fsmObjectParams: []
+        fsmVarParams: []
+        byteData: 000156616c69644d6f766554617267657453756363656564436865636b4661696c436865636b00
+        arrayParamSizes: 
+        arrayParamTypes: []
+        customTypeSizes: 
+        customTypeNames: []
+        paramDataType: 11000000170000001700000001000000
+        paramName:
+        - boolVariable
+        - isTrue
+        - isFalse
+        - everyFrame
+        paramDataPos: 00000000110000001d00000026000000
+        paramByteDataSize: 110000000c0000000900000001000000
     events:
     - name: FINISHED
       isSystemEvent: 1
@@ -1381,6 +1507,9 @@ MonoBehaviour:
     - name: BeginPlayerTurn
       isSystemEvent: 0
       isGlobal: 1
+    - name: FailCheck
+      isSystemEvent: 0
+      isGlobal: 0
     - name: NextMovePhase
       isSystemEvent: 0
       isGlobal: 0
@@ -1388,6 +1517,9 @@ MonoBehaviour:
       isSystemEvent: 0
       isGlobal: 0
     - name: PlanMove
+      isSystemEvent: 0
+      isGlobal: 0
+    - name: SucceedCheck
       isSystemEvent: 0
       isGlobal: 0
     - name: SwitchToNewPlayerCharacter

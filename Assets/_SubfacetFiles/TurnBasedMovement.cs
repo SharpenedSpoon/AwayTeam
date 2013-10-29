@@ -9,12 +9,14 @@ public class TurnBasedMovement : AIPath {
 	private GridGraph gridGraph;
 	
 	private Vector3[] pathArray;
-	private path traversablePathSection;
-	private path leftoverPathSection;
+	private Path traversablePathSection;
+	private Path leftoverPathSection;
 	
 	private bool isMoving;
 	private PlayMakerFSM fsm;
 	private RaycastHit hit;
+	
+	private Color moveColor;
 	// Use this for initialization
 	void Start () {
 		base.Start();
@@ -46,11 +48,18 @@ public class TurnBasedMovement : AIPath {
 		}
 		if (planningMovement || isMoving) {
 			if (path != null) {
+				if (path.path.Count > 3) {
+					fsm.FsmVariables.GetFsmBool("ValidMoveTarget").Value = false;
+					moveColor = Color.red;
+				} else {
+					fsm.FsmVariables.GetFsmBool("ValidMoveTarget").Value = true;
+					moveColor = Color.green;
+				}
 				foreach (Node node in path.path) {
 					//node.position;
 					Debug.Log(node.ToString());
 				}
-				VectorLine.SetLine3D(Color.green, 0.01f, path.vectorPath.ToArray());
+				VectorLine.SetLine3D(moveColor, 0.01f, path.vectorPath.ToArray());
 			}
 		}
 		
