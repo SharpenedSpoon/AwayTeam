@@ -1,10 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/TurnBasedShooting.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/TurnBasedMovement.cs">
     <Files>
-      <File FileName="Assets/_SubfacetFiles/TurnBasedMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets/_SubfacetFiles/TurnBasedShooting.cs" Line="24" Column="52" />
-      <File FileName="Assets/_SubfacetFiles/CharacterMeta.cs" Line="12" Column="23" />
+      <File FileName="Assets/_SubfacetFiles/TurnBasedMovement.cs" Line="9" Column="30" />
+      <File FileName="Assets/_SubfacetFiles/TurnBasedShooting.cs" Line="1" Column="1" />
+      <File FileName="Assets/_SubfacetFiles/CharacterMeta.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

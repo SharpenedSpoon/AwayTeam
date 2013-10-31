@@ -68,15 +68,29 @@ MonoBehaviour:
         actionNames:
         - HutongGames.PlayMaker.Actions.SetBoolValue
         - HutongGames.PlayMaker.Actions.SetBoolValue
+        - HutongGames.PlayMaker.Actions.SetGameObject
         customNames:
         - 
         - 
-        actionEnabled: 0101
-        actionIsOpen: 0000
-        actionStartIndex: 0000000003000000
-        actionHashCodes: 29b4727b29b4727b
+        - Set Game Object (GUITurnText)
+        actionEnabled: 010101
+        actionIsOpen: 000001
+        actionStartIndex: 000000000300000006000000
+        actionHashCodes: 29b4727b29b4727b49d19419
         unityObjectParams: []
-        fsmGameObjectParams: []
+        fsmGameObjectParams:
+        - useVariable: 1
+          name: GUITurnText
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {fileID: 0}
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: {fileID: 0}
         fsmOwnerDefaultParams: []
         animationCurveParams: []
         functionCallParams: []
@@ -87,12 +101,12 @@ MonoBehaviour:
         fsmStringParams: []
         fsmObjectParams: []
         fsmVarParams: []
-        byteData: 00014973456e656d795475726e00000000014973506c617965725475726e000000
+        byteData: 00014973456e656d795475726e00000000014973506c617965725475726e00000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 110000001100000001000000110000001100000001000000
+        paramDataType: 110000001100000001000000110000001100000001000000130000001300000001000000
         paramName:
         - boolVariable
         - boolValue
@@ -100,8 +114,11 @@ MonoBehaviour:
         - boolVariable
         - boolValue
         - everyFrame
-        paramDataPos: 000000000d0000000f000000100000001e00000020000000
-        paramByteDataSize: 0d00000002000000010000000e0000000200000001000000
+        - variable
+        - gameObject
+        - everyFrame
+        paramDataPos: 000000000d0000000f000000100000001e00000020000000000000000100000021000000
+        paramByteDataSize: 0d00000002000000010000000e0000000200000001000000000000000000000001000000
     - name: BeginPlayerTurn
       description: 
       colorIndex: 0
@@ -129,15 +146,17 @@ MonoBehaviour:
         - HutongGames.PlayMaker.Actions.SetBoolValue
         - HutongGames.PlayMaker.Actions.SendEvent
         - HutongGames.PlayMaker.Actions.SetGameObject
+        - HutongGames.PlayMaker.Actions.SetGUIText
         customNames:
         - 
         - 
         - Send Event (BeginPlayerTurn)
         - Reset Active Player
-        actionEnabled: 01010101
-        actionIsOpen: 00000000
-        actionStartIndex: 0000000003000000060000000a000000
-        actionHashCodes: 29b4727b29b4727beec9d96849d19419
+        - Set GUI Turn Text
+        actionEnabled: 0101010101
+        actionIsOpen: 0000000001
+        actionStartIndex: 0000000003000000060000000a0000000d000000
+        actionHashCodes: 29b4727b29b4727beec9d96849d19419ec086d87
         unityObjectParams: []
         fsmGameObjectParams:
         - useVariable: 1
@@ -152,7 +171,15 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: {fileID: 0}
-        fsmOwnerDefaultParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 1
+          gameObject:
+            useVariable: 1
+            name: GUITurnText
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -191,15 +218,21 @@ MonoBehaviour:
           fsmComponent: {fileID: 0}
         fsmPropertyParams: []
         layoutOptionParams: []
-        fsmStringParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Player Turn
         fsmObjectParams: []
         fsmVarParams: []
-        byteData: 00014973456e656d795475726e00000000014973506c617965725475726e010000426567696e506c617965725475726e00000000000000
+        byteData: 00014973456e656d795475726e00000000014973506c617965725475726e010000426567696e506c617965725475726e0000000000000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1100000011000000010000001100000011000000010000001f000000170000000f00000001000000130000001300000001000000
+        paramDataType: 1100000011000000010000001100000011000000010000001f000000170000000f00000001000000130000001300000001000000140000001200000001000000
         paramName:
         - boolVariable
         - boolValue
@@ -214,8 +247,11 @@ MonoBehaviour:
         - variable
         - gameObject
         - everyFrame
-        paramDataPos: 000000000d0000000f000000100000001e0000002000000000000000210000003000000035000000000000000100000036000000
-        paramByteDataSize: 0d00000002000000010000000e0000000200000001000000000000000f0000000500000001000000000000000000000001000000
+        - gameObject
+        - text
+        - everyFrame
+        paramDataPos: 000000000d0000000f000000100000001e0000002000000000000000210000003000000035000000000000000100000036000000000000000000000037000000
+        paramByteDataSize: 0d00000002000000010000000e0000000200000001000000000000000f0000000500000001000000000000000000000001000000000000000000000001000000
     - name: PlayerTurn
       description: 
       colorIndex: 0
@@ -380,15 +416,17 @@ MonoBehaviour:
         - HutongGames.PlayMaker.Actions.SetBoolValue
         - HutongGames.PlayMaker.Actions.SendEvent
         - HutongGames.PlayMaker.Actions.SetGameObject
+        - HutongGames.PlayMaker.Actions.SetGUIText
         customNames:
         - 
         - 
         - Send Event (BeginEnemyTurn)
         - Reset Active Player
-        actionEnabled: 01010101
-        actionIsOpen: 00000000
-        actionStartIndex: 0000000003000000060000000a000000
-        actionHashCodes: 29b4727b29b4727beec9d96849d19419
+        - Set GUI Turn Text
+        actionEnabled: 0101010101
+        actionIsOpen: 0000000001
+        actionStartIndex: 0000000003000000060000000a0000000d000000
+        actionHashCodes: 29b4727b29b4727beec9d96849d19419ec086d87
         unityObjectParams: []
         fsmGameObjectParams:
         - useVariable: 1
@@ -403,7 +441,15 @@ MonoBehaviour:
           showInInspector: 0
           networkSync: 0
           value: {fileID: 0}
-        fsmOwnerDefaultParams: []
+        fsmOwnerDefaultParams:
+        - ownerOption: 1
+          gameObject:
+            useVariable: 1
+            name: GUITurnText
+            tooltip: 
+            showInInspector: 0
+            networkSync: 0
+            value: {fileID: 0}
         animationCurveParams: []
         functionCallParams: []
         fsmTemplateControlParams: []
@@ -442,15 +488,21 @@ MonoBehaviour:
           fsmComponent: {fileID: 0}
         fsmPropertyParams: []
         layoutOptionParams: []
-        fsmStringParams: []
+        fsmStringParams:
+        - useVariable: 0
+          name: 
+          tooltip: 
+          showInInspector: 0
+          networkSync: 0
+          value: Enemy Turn
         fsmObjectParams: []
         fsmVarParams: []
-        byteData: 00014973456e656d795475726e01000000014973506c617965725475726e000000426567696e456e656d795475726e00000000000000
+        byteData: 00014973456e656d795475726e01000000014973506c617965725475726e000000426567696e456e656d795475726e0000000000000000
         arrayParamSizes: 
         arrayParamTypes: []
         customTypeSizes: 
         customTypeNames: []
-        paramDataType: 1100000011000000010000001100000011000000010000001f000000170000000f00000001000000130000001300000001000000
+        paramDataType: 1100000011000000010000001100000011000000010000001f000000170000000f00000001000000130000001300000001000000140000001200000001000000
         paramName:
         - boolVariable
         - boolValue
@@ -465,8 +517,11 @@ MonoBehaviour:
         - variable
         - gameObject
         - everyFrame
-        paramDataPos: 000000000d0000000f000000100000001e0000002000000000000000210000002f00000034000000000000000100000035000000
-        paramByteDataSize: 0d00000002000000010000000e0000000200000001000000000000000e0000000500000001000000000000000000000001000000
+        - gameObject
+        - text
+        - everyFrame
+        paramDataPos: 000000000d0000000f000000100000001e0000002000000000000000210000002f00000034000000000000000100000035000000000000000000000036000000
+        paramByteDataSize: 0d00000002000000010000000e0000000200000001000000000000000e0000000500000001000000000000000000000001000000000000000000000001000000
     - name: EnemyTurn
       description: 
       colorIndex: 0
@@ -652,7 +707,13 @@ MonoBehaviour:
       colorVariables: []
       rectVariables: []
       quaternionVariables: []
-      gameObjectVariables: []
+      gameObjectVariables:
+      - useVariable: 1
+        name: GUITurnText
+        tooltip: 
+        showInInspector: 0
+        networkSync: 0
+        value: {fileID: 0}
       objectVariables: []
       materialVariables: []
       textureVariables: []

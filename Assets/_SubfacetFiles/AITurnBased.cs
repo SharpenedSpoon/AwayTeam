@@ -4,8 +4,8 @@ using Pathfinding;
 using Vectrosity;
 using HutongGames.PlayMaker;
 
-public class TurnBasedMovement : AIPath {
-	private bool planningMovement;
+public class AITurnBased : AIPath {
+private bool planningMovement;
 	private GridGraph gridGraph;
 	
 	private Vector3[] pathArray;
@@ -17,27 +17,23 @@ public class TurnBasedMovement : AIPath {
 	private RaycastHit hit;
 	
 	private Color moveColor;
+	
+	private CharacterMeta characterMeta;
 	// Use this for initialization
 	void Start () {
 		base.Start();
 		fsm = GetComponent<PlayMakerFSM>();
 		gridGraph = AstarPath.active.astarData.gridGraph;
+		characterMeta = GetComponent<CharacterMeta>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		base.Update();
-		planningMovement = fsm.FsmVariables.GetFsmBool("IsPlanningMovement").Value;
+		/*planningMovement = fsm.FsmVariables.GetFsmBool("IsPlanningMovement").Value;
 		isMoving = fsm.FsmVariables.GetFsmBool("IsMoving").Value;
 		if (planningMovement) {
-			canSearch = true;
-			var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100.0f))
-				return;
-			if (hit.rigidbody != target.rigidbody) {
-				//target.transform.position = hit.point;
-				target.transform.position = gridGraph.GetNearest(hit.point).clampedPosition;
-			}
+			
 		} else {
 			canSearch = false;
 		}
@@ -57,12 +53,28 @@ public class TurnBasedMovement : AIPath {
 				}
 				foreach (Node node in path.path) {
 					//node.position;
-					//Debug.Log(node.ToString());
+					Debug.Log(node.ToString());
 				}
 				VectorLine.SetLine3D(moveColor, 0.01f, path.vectorPath.ToArray());
 			}
+		}*/
+		if (path != null && canSearch) {
+			VectorLine.SetLine3D(Color.yellow, 0.01f, path.vectorPath.ToArray());
 		}
 		
+	}
+	
+	public void PlanMovement(GameObject targetPlayer) {
+		canSearch = true;
+		var destRatio = 1.0f;
+		var dist = Vector3.Distance(transform.position, targetPlayer.transform.position);
+		if (dist > characterMeta.MoveRange) {
+			destRatio = characterMeta.MoveRange / dist;
+		}
+		var dest = Vector3.Lerp(transform.position, targetPlayer.transform.position, destRatio);
+		dest.y = Terrain.activeTerrain.SampleHeight(dest);
+		//dest = gridGraph.GetNearest(dest).clampedPosition;
+		target.transform.position = dest;
 	}
 	
 	/*public void StartPlanningMovement() {
