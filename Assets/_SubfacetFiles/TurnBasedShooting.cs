@@ -14,12 +14,15 @@ public class TurnBasedShooting : MonoBehaviour {
 	private Vector3[] aimingLine;
 	private Color aimingColor;
 	public Transform target = null;
+	
+	private CharacterMeta characterMeta;
 	// Use this for initialization
 	void Start () {
 		//aStarPath = GetComponent<AstarPath>();
 		//gridGraph = aStarPath.astarData.gridGraph;
 		gridGraph = AstarPath.active.astarData.gridGraph;
 		fsm = GetComponent<PlayMakerFSM>();
+		characterMeta = GetComponent<CharacterMeta>();
 		if (target != null) {
 			targetFsm = target.GetComponent<PlayMakerFSM>();
 		}
@@ -58,6 +61,10 @@ public class TurnBasedShooting : MonoBehaviour {
 			}
 		} else if (fsm.FsmVariables.GetFsmBool("IsShooting").Value) {*/
 		}
+	}
+	
+	public void Shoot(GameObject targetObject) {
+		targetObject.GetComponent<CharacterMeta>().TakeDamage(characterMeta.Damage);
 	}
 	
 	private Vector3 objectMidpoint(Transform trans) {

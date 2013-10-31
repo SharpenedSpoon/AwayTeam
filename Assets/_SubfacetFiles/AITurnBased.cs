@@ -19,12 +19,17 @@ private bool planningMovement;
 	private Color moveColor;
 	
 	private CharacterMeta characterMeta;
+	
+	private Vector3[] aimingLine;
+	
+	private bool isAiming;
 	// Use this for initialization
 	void Start () {
 		base.Start();
 		fsm = GetComponent<PlayMakerFSM>();
 		gridGraph = AstarPath.active.astarData.gridGraph;
 		characterMeta = GetComponent<CharacterMeta>();
+		isAiming = false;
 	}
 	
 	// Update is called once per frame
@@ -58,23 +63,58 @@ private bool planningMovement;
 				VectorLine.SetLine3D(moveColor, 0.01f, path.vectorPath.ToArray());
 			}
 		}*/
-		if (path != null && canSearch) {
+		if (path != null && (canSearch || canMove)) {
 			VectorLine.SetLine3D(Color.yellow, 0.01f, path.vectorPath.ToArray());
+		}
+		
+		if (isAiming) {
+			VectorLine.SetLine3D(Color.yellow, 0.01f, aimingLine);
 		}
 		
 	}
 	
-	public void PlanMovement(GameObject targetPlayer) {
+	public void PlanMovement(GameObject targetObject) {
 		canSearch = true;
 		var destRatio = 1.0f;
-		var dist = Vector3.Distance(transform.position, targetPlayer.transform.position);
+		var dist = Vector3.Distance(transform.position, targetObject.transform.position);
 		if (dist > characterMeta.MoveRange) {
 			destRatio = characterMeta.MoveRange / dist;
 		}
-		var dest = Vector3.Lerp(transform.position, targetPlayer.transform.position, destRatio);
+		var dest = Vector3.Lerp(transform.position, targetObject.transform.position, destRatio);
 		dest.y = Terrain.activeTerrain.SampleHeight(dest);
-		//dest = gridGraph.GetNearest(dest).clampedPosition;
+		dest = gridGraph.GetNearest(dest).clampedPosition;
 		target.transform.position = dest;
+	}
+	
+	public void BeginMovement() {
+		
+			//canSearch = false;
+			canMove = true;
+		
+	}
+	
+	public void EndMovement() {
+		canSearch = false;
+		canMove = false;
+	}
+	
+	public void PlanShooting(GameObject targetObject) {
+		isAiming = true;
+		aimingLine = new Vector3[2];
+		aimingLine[0] = objectMidpoint(transform);
+		aimingLine[1] = objectMidpoint(targetObject.transform);
+	}
+	
+	public void Shoot(GameObject targetObject) {
+		isAiming = false;
+		targetObject.GetComponent<CharacterMeta>().TakeDamage(characterMeta.Damage);
+	}
+	
+	private Vector3 objectMidpoint(Transform trans) {
+		Vector3 pos = trans.position;
+		Vector3 scl = trans.lossyScale;
+		pos.y = pos.y + (float) 0.5*scl.y;
+		return pos;
 	}
 	
 	/*public void StartPlanningMovement() {
