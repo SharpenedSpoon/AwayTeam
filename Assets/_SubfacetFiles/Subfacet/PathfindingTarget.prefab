@@ -95,7 +95,7 @@ MonoBehaviour:
         serializedVersion: 2
         x: 50
         y: 100
-        width: 131
+        width: 198
         height: 32
       isBreakpoint: 0
       isSequence: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
         - Reset TargetObject
         - 
         actionEnabled: 010101
-        actionIsOpen: 000001
+        actionIsOpen: 010101
         actionStartIndex: 000000000300000006000000
         actionHashCodes: 29b4727b49d19419621d94f2
         unityObjectParams: []
@@ -274,10 +274,21 @@ MonoBehaviour:
         paramDataPos: 0000000000000000000000001100000011000000130000001400000021000000230000002400000000000000280000000100000039000000
         paramByteDataSize: 0000000000000000110000000000000002000000010000000d00000002000000010000000400000000000000110000000000000005000000
     events:
+    - name: SwitchToNewPlayerCharacter
+      isSystemEvent: 0
+      isGlobal: 1
     - name: toggleValidTarget
       isSystemEvent: 0
       isGlobal: 0
-    globalTransitions: []
+    globalTransitions:
+    - fsmEvent:
+        name: SwitchToNewPlayerCharacter
+        isSystemEvent: 0
+        isGlobal: 1
+      toState: Idle
+      linkStyle: 0
+      linkConstraint: 0
+      colorIndex: 0
     variables:
       floatVariables: []
       intVariables: []
