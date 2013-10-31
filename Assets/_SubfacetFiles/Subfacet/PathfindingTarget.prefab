@@ -209,7 +209,7 @@ MonoBehaviour:
         - ValidTarget is True
         - 
         actionEnabled: 010101
-        actionIsOpen: 000000
+        actionIsOpen: 000101
         actionStartIndex: 000000000600000009000000
         actionHashCodes: b81f8bad29b4727b621d94f2
         unityObjectParams: []

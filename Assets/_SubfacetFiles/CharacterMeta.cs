@@ -5,6 +5,9 @@ public class CharacterMeta : MonoBehaviour {
 	
 	public float Health = 3.0f;
 	public float Damage = 1.0f;
+	public int Team = 0;
+	public float MoveRange = 5.0f;
+	public float ShootRange = 3.0f;
 
 	// Use this for initialization
 	void Start () {
