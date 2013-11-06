@@ -929,6 +929,7 @@
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
      <Compile Include="Assets\_SubfacetFiles\AITurnBased.cs" />
      <Compile Include="Assets\_SubfacetFiles\CharacterMeta.cs" />
+     <Compile Include="Assets\_SubfacetFiles\PlayerHandler.cs" />
      <Compile Include="Assets\_SubfacetFiles\Subfacet\CameraMovement.cs" />
      <Compile Include="Assets\_SubfacetFiles\Subfacet\MyAIPath.cs" />
      <Compile Include="Assets\_SubfacetFiles\TurnBasedMovement.cs" />
