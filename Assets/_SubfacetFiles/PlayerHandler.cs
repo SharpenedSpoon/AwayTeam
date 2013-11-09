@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Pathfinding;
 using Vectrosity;
 using HutongGames.PlayMaker;
@@ -16,6 +17,7 @@ public class PlayerHandler : AIPath {
 	private bool isMoving = false;
 	private bool isPlanningShooting = false;
 	private bool isShooting = false;
+	private Vector3[] pathForDisplay;
 	private Color pathColor = Color.black;
 	public bool validMovementPath { get; private set; }
 	public bool validShootingPath { get; private set; }
@@ -42,11 +44,13 @@ public class PlayerHandler : AIPath {
 		canMove = false;
 		canSearch = false;
 		repathRate = 0.01f;
+		
+		base.Start();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		base.Update();
 		// put the pathfinding object where the mouse is
 		if (isPlanningMovement || isPlanningShooting) {
 			if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100.0f)) {
@@ -66,6 +70,10 @@ public class PlayerHandler : AIPath {
 				validMovementPath = true;
 				pathColor = Color.green;
 			}
+			
+			// draw the path
+			pathForDisplay = addVectorToList(path.vectorPath.ToArray(), new Vector3(0.0f, 1.0f, 0.0f));
+			Vectrosity.VectorLine.SetLine3D(pathColor, repathRate, pathForDisplay);
 		} else {
 			validMovementPath = false;
 		}
@@ -82,16 +90,27 @@ public class PlayerHandler : AIPath {
 	
 	public void StartPlanningMovement() {
 		canSearch = true;
+		isPlanningMovement = true;
 	}
 	
 	public void StartMoving() {
 		canSearch = false;
 		canMove = true;
+		isPlanningMovement = false;
+		isMoving = true;
 	}
 	
 	public override void OnTargetReached ()
 	{
 		base.OnTargetReached();
 		canMove = false;
+	}
+	
+	private Vector3[] addVectorToList(Vector3[] vectorArray, Vector3 vectorToAdd) {
+		var vectorList = new List<Vector3>();
+		foreach (Vector3 vec in vectorArray) {
+			vectorList.Add(vec + vectorToAdd);
+		}
+		return vectorList.ToArray();
 	}
 }
