@@ -2,7 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/PlayerHandler.cs">
     <Files>
-      <File FileName="Assets/_SubfacetFiles/PlayerHandler.cs" Line="74" Column="20" />
+      <File FileName="Assets/_SubfacetFiles/PlayerHandler.cs" Line="73" Column="4" />
+      <File FileName="Assets/_SubfacetFiles/CharacterMeta.cs" Line="21" Column="2" />
       <File FileName="Assets/_SubfacetFiles/TurnBasedMovement.cs" Line="33" Column="14" />
       <File FileName="Assets/GameAssets/AstarPathfindingProject/Core/AI/AIPath.cs" Line="135" Column="8" />
       <File FileName="Assets/_SubfacetFiles/TurnBasedShooting.cs" Line="16" Column="33" />

@@ -78,6 +78,39 @@ public class PlayerHandler : AIPath {
 			validMovementPath = false;
 		}
 		
+		if (isPlanningShooting) {
+			validShootingPath = false;
+			pathForDisplay = new Vector3[2];
+			if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100.0f)) {
+				return;
+			}
+			if (hit.rigidbody != pathfindingObject.rigidbody) {
+				//pathfindingObject.transform.position = gridGraph.GetNearest(hit.point).clampedPosition;
+				pathfindingObject.transform.position = hit.point;
+			}
+			pathForDisplay[0] = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+			pathForDisplay[1] = pathfindingObject.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+			
+			if (Vector3.Distance(transform.position, pathfindingObject.transform.position) > characterMeta.ShootRange) {
+				if (hit.rigidbody) {
+					if (hit.rigidbody.tag == "Shootable") {
+						if (characterMeta.IsValidTarget(hit.rigidbody.gameObject)) {
+							validShootingPath = true;
+						}
+					}
+				}
+			}
+			
+			if (validShootingPath) {
+				pathColor = Color.green;
+			} else {
+				pathColor = Color.red;
+			}
+			
+			
+			Vectrosity.VectorLine.SetLine3D(pathColor, repathRate, pathForDisplay);
+		}
+		
 	}
 	
 	public void BeginPlayerTurn() {
@@ -104,6 +137,15 @@ public class PlayerHandler : AIPath {
 	{
 		base.OnTargetReached();
 		canMove = false;
+	}
+	
+	public void StartPlanningShooting() {
+		isPlanningShooting = true;
+	}
+	
+	public void StartShooting(GameObject shootingTarget) {
+		var targetMeta = shootingTarget.GetComponent<CharacterMeta>();
+		targetMeta.TakeDamage(characterMeta.Damage);
 	}
 	
 	private Vector3[] addVectorToList(Vector3[] vectorArray, Vector3 vectorToAdd) {

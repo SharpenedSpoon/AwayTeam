@@ -37,4 +37,8 @@ public class CharacterMeta : MonoBehaviour {
 	public void Die() {
 		Destroy(gameObject);
 	}
+	
+	public bool IsValidTarget(GameObject target) {
+		return (target.GetComponent<CharacterMeta>().Team != Team);
+	}
 }
