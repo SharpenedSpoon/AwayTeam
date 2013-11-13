@@ -11,6 +11,7 @@ public class PlayerHandler : AIPath {
 	
 	private GameObject pathfindingObject = null;
 	private GameObject enemyTarget = null;
+	private HUDText hudText;
 	private CharacterMeta characterMeta = null;
 	private PlayMakerFSM fsm = null;
 	private bool isPlanningMovement = false;
@@ -37,6 +38,7 @@ public class PlayerHandler : AIPath {
 		pathfindingObject = GameObject.Find("PathfindingTarget");
 		gridGraph = AstarPath.active.astarData.gridGraph;
 		characterMeta = GetComponent<CharacterMeta>();
+		hudText = GetComponent<HUDText>();
 		fsm = GetComponent<PlayMakerFSM>();
 		
 		// Set AIPath variables
@@ -92,13 +94,16 @@ public class PlayerHandler : AIPath {
 			pathForDisplay[1] = pathfindingObject.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
 			
 			if (Vector3.Distance(transform.position, pathfindingObject.transform.position) > characterMeta.ShootRange) {
-				if (hit.rigidbody) {
-					if (hit.rigidbody.tag == "Shootable") {
-						if (characterMeta.IsValidTarget(hit.rigidbody.gameObject)) {
+				//if (hit.rigidbody) {
+					//if (hit.rigidbody.tag == "Shootable") {
+						//if (characterMeta.IsValidTarget(hit.rigidbody.gameObject)) {
+						var tempTargetObject = pathfindingObject.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmGameObject("TargetObject").Value;
+						if (characterMeta.IsValidTarget(tempTargetObject)) {
+							hudText.Add("Valid Target!", Color.red, 1f);
 							validShootingPath = true;
 						}
-					}
-				}
+					//}
+				//}
 			}
 			
 			if (validShootingPath) {

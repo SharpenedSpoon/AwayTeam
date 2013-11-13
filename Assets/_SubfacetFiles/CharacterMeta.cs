@@ -39,6 +39,10 @@ public class CharacterMeta : MonoBehaviour {
 	}
 	
 	public bool IsValidTarget(GameObject target) {
-		return (target.GetComponent<CharacterMeta>().Team != Team);
+		if (target != null) {
+			return (target.GetComponent<CharacterMeta>().Team != Team);
+		} else {
+			return false;
+		}
 	}
 }
