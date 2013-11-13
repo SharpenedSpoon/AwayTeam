@@ -99,7 +99,7 @@ public class PlayerHandler : AIPath {
 						//if (characterMeta.IsValidTarget(hit.rigidbody.gameObject)) {
 						var tempTargetObject = pathfindingObject.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmGameObject("TargetObject").Value;
 						if (characterMeta.IsValidTarget(tempTargetObject)) {
-							hudText.Add("Valid Target!", Color.red, 1f);
+							
 							validShootingPath = true;
 						}
 					//}
