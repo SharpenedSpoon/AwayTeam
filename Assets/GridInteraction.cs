@@ -8,11 +8,13 @@ using HutongGames.PlayMaker;
 public class GridInteraction : MonoBehaviour {
 
 	// Objects and Components
+	public GameObject currentGridObject { get; private set; }
+	public GameObject activeGridObject { get; private set; }
+	public GameObject activePlayer { get; private set; }
 	private GridGraph gridGraph;
 	private RaycastHit hit;
-	public GameObject currentGridObject { get; private set; }
-	public GameObject activeGridObject = null;
 	private Terrain activeTerrain;
+	private PlayMakerFSM turnManagerFsm;
 
 	// Variables and numbers and stuff
 	private float nodeSize;
@@ -21,25 +23,34 @@ public class GridInteraction : MonoBehaviour {
 	private Vector3[] activeNodeSquare;
 
 	// Colors
-	private Color currentNodeColor = Color.black;
 	public Color activeNodeColor = Color.green;
 	public Color defaultEmptyNodeColor = Color.black;
 	public Color defaultGridObjectNodeColor = Color.white;
 	public Color playerNodeColor = Color.blue;
 	public Color enemyNodeColor = Color.red;
 	public Color resourceNodeColor = Color.yellow;
+	private Color currentNodeColor = Color.black;
 
 	
 	void Start () {
 		activeTerrain = Terrain.activeTerrain;
 		gridGraph = AstarPath.active.astarData.gridGraph;
 		nodeSize = gridGraph.nodeSize;
+		turnManagerFsm = GameObject.Find("TurnManager").GetComponent<PlayMakerFSM>();
+
 		currentGridObject = null;
+		activeGridObject = null;
 	}
 
 	void Update () {
 		selectCurrentGridNode();
 		drawActiveGridObjectNode();
+
+		if (Input.GetMouseButtonDown(0)) {
+			if (turnManagerFsm.FsmVariables.GetFsmBool("IsPlayerTurn").Value) {
+				updateActiveGridObject();
+			}
+		}
 	}
 
 	private void selectCurrentGridNode() {
@@ -87,16 +98,27 @@ public class GridInteraction : MonoBehaviour {
 		Vectrosity.VectorLine.SetLine3D(currentNodeColor, 0.01f, currentNodeSquare);
 	}
 
+	private void updateActiveGridObject() {
+		if (activeGridObject != null) {
+			activeGridObject.SendMessage("MakeInactive");
+			activeGridObject = null;
+		}
+		if (currentGridObject != null) {
+			currentGridObject.SendMessage("MakeActive");
+			activeGridObject = currentGridObject;
+		}
+	}
+	
 	private void drawActiveGridObjectNode() {
-		if (currentGridObject == null) {
+		if (activeGridObject == null) {
 			return;
 		}
 
-		activeNodeSquare = makeGridSquare(currentGridObject.transform.position);
+		activeNodeSquare = makeGridSquare(activeGridObject.transform.position, 0.3f);
 		Vectrosity.VectorLine.SetLine3D(activeNodeColor, 0.01f, activeNodeSquare);
 	}
 
-	private Vector3[] makeGridSquare(Vector3 centerNode) {
+	private Vector3[] makeGridSquare(Vector3 centerNode, float distanceAboveTerrain = 0.2f) {
 		// first ensure that the given node is at terrain level
 		centerNode.y = activeTerrain.SampleHeight(centerNode);
 
@@ -107,7 +129,7 @@ public class GridInteraction : MonoBehaviour {
 		output[2] = centerNode + (new Vector3(0.5f*nodeSize, 0.0f, 0.5f*nodeSize));
 		output[3] = centerNode + (new Vector3(0.5f*nodeSize, 0.0f, -0.5f*nodeSize));
 		output[4] = output[0];
-		output = addVectorToArray(output, new Vector3(0.0f, 0.2f, 0.0f));
+		output = addVectorToArray(output, new Vector3(0.0f, distanceAboveTerrain, 0.0f));
 		return output;
 	}
 
