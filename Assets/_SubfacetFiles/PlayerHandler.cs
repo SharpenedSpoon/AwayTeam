@@ -65,7 +65,7 @@ public class PlayerHandler : AIPath {
 		
 		// determine if the given path is valid
 		if (isPlanningMovement && path != null) {
-			if (path.path.Count > characterMeta.MoveRange) {
+			if (path.path.Count > characterMeta.MoveNodeRange) {
 				validMovementPath = false;
 				pathColor = Color.red;
 			} else {
@@ -93,7 +93,7 @@ public class PlayerHandler : AIPath {
 			pathForDisplay[0] = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
 			pathForDisplay[1] = pathfindingObject.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
 			
-			if (Vector3.Distance(transform.position, pathfindingObject.transform.position) > characterMeta.ShootRange) {
+			if (Vector3.Distance(transform.position, pathfindingObject.transform.position) > characterMeta.shootRange) {
 				//if (hit.rigidbody) {
 					//if (hit.rigidbody.tag == "Shootable") {
 						//if (characterMeta.IsValidTarget(hit.rigidbody.gameObject)) {

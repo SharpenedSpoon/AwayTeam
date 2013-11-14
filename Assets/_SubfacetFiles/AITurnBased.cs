@@ -77,8 +77,8 @@ private bool planningMovement;
 		canSearch = true;
 		var destRatio = 1.0f;
 		var dist = Vector3.Distance(transform.position, targetObject.transform.position);
-		if (dist > characterMeta.MoveRange) {
-			destRatio = characterMeta.MoveRange / dist;
+		if (dist > characterMeta.moveRange) {
+			destRatio = characterMeta.moveRange / dist;
 		}
 		var dest = Vector3.Lerp(transform.position, targetObject.transform.position, destRatio);
 		dest.y = Terrain.activeTerrain.SampleHeight(dest);

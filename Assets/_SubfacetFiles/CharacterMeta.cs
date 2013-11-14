@@ -1,22 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Pathfinding;
 
 public class CharacterMeta : MonoBehaviour {
 	
 	public float Health = 3.0f;
 	public float Damage = 1.0f;
 	public int Team = 0;
-	public float MoveRange = 15.0f;
-	public float ShootRange = 30.0f;
+	public int MoveNodeRange = 3;
+	public int ShootNodeRange = 10;
+	public float moveRange { get; private set; }
+	public float shootRange { get; private set; }
+
+	private GridGraph gridGraph;
+	private float nodeSize;
 	
 	private HUDText hudText;
 
-	// Use this for initialization
 	void Start () {
+		gridGraph = AstarPath.active.astarData.gridGraph;
+		nodeSize = gridGraph.nodeSize;
 		hudText = GetComponent<HUDText>();
+
+		moveRange = MoveNodeRange * nodeSize;
+		shootRange = ShootNodeRange * nodeSize;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}

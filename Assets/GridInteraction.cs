@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using Pathfinding;
 using Vectrosity;
@@ -12,15 +13,15 @@ public class GridInteraction : MonoBehaviour {
 	public GameObject activeGridObject { get; private set; }
 	public GameObject activePlayer { get; private set; }
 	private GridGraph gridGraph;
-	private RaycastHit hit;
 	private Terrain activeTerrain;
-	private PlayMakerFSM turnManagerFsm;
+	//private PlayMakerFSM turnManagerFsm;
 
-	// Variables and numbers and stuff
+	// Variables and numbers and arrays and stuff
+	public Vector3 currentNode { get; private set; }
 	private float nodeSize;
-	private Vector3 currentNode = Vector3.zero;
 	private Vector3[] currentNodeSquare;
 	private Vector3[] activeNodeSquare;
+	private RaycastHit hit;
 
 	// Colors
 	public Color activeNodeColor = Color.green;
@@ -35,8 +36,10 @@ public class GridInteraction : MonoBehaviour {
 	void Start () {
 		activeTerrain = Terrain.activeTerrain;
 		gridGraph = AstarPath.active.astarData.gridGraph;
+
 		nodeSize = gridGraph.nodeSize;
-		turnManagerFsm = GameObject.Find("TurnManager").GetComponent<PlayMakerFSM>();
+		currentNode = Vector3.zero;
+		//turnManagerFsm = GameObject.Find("TurnManager").GetComponent<PlayMakerFSM>();
 
 		currentGridObject = null;
 		activeGridObject = null;
@@ -47,7 +50,7 @@ public class GridInteraction : MonoBehaviour {
 		drawActiveGridObjectNode();
 
 		if (Input.GetMouseButtonDown(0)) {
-			if (turnManagerFsm.FsmVariables.GetFsmBool("IsPlayerTurn").Value) {
+			if (FsmVariables.GlobalVariables.GetFsmBool("IsPlayerTurn").Value) {
 				updateActiveGridObject();
 			}
 		}
@@ -55,7 +58,7 @@ public class GridInteraction : MonoBehaviour {
 
 	private void selectCurrentGridNode() {
 		if (!Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100.0f)) {
-			//currentNode = Vector3.zero;
+			//currentNode = Vector3.zero; // reset currentNode to the closest to a null Vector3 we have
 			return;
 		}
 		var usingOldGridObject = true;
@@ -64,6 +67,7 @@ public class GridInteraction : MonoBehaviour {
 		pos = gridGraph.GetNearest(pos).clampedPosition;
 
 		if (currentNode == Vector3.zero || currentNode != pos) {
+			// set the currentNode to be at the current mouse position, if it's not already
 			currentNode = pos;
 			currentGridObject = findClosestGridObject(currentNode);
 			usingOldGridObject = false;
@@ -83,9 +87,12 @@ public class GridInteraction : MonoBehaviour {
 
 	private void drawCurrentGridNode() {
 		currentNodeSquare = makeGridSquare(currentNode);
+
 		if (currentGridObject == null) {
+			// is the current node empty?
 			currentNodeColor = defaultEmptyNodeColor;
 		} else {
+			// the current node is not empty. what is on it?
 			currentNodeColor = defaultGridObjectNodeColor;
 			if (currentGridObject.name == "PlayerCharacter") {
 				currentNodeColor = playerNodeColor;
@@ -95,15 +102,19 @@ public class GridInteraction : MonoBehaviour {
 				currentNodeColor = resourceNodeColor;
 			}
 		}
+
 		Vectrosity.VectorLine.SetLine3D(currentNodeColor, 0.01f, currentNodeSquare);
 	}
 
 	private void updateActiveGridObject() {
 		if (activeGridObject != null) {
+			// reset the active object if you click on anything
+			// this is twofold: allow you to unselect stuff, as well as allow switching between objects
 			activeGridObject.SendMessage("MakeInactive");
 			activeGridObject = null;
 		}
 		if (currentGridObject != null) {
+			// switch the active object to be the currently highlighted one
 			currentGridObject.SendMessage("MakeActive");
 			activeGridObject = currentGridObject;
 		}
@@ -114,7 +125,7 @@ public class GridInteraction : MonoBehaviour {
 			return;
 		}
 
-		activeNodeSquare = makeGridSquare(activeGridObject.transform.position, 0.3f);
+		activeNodeSquare = makeGridSquare(activeGridObject.transform.position, 0.25f);
 		Vectrosity.VectorLine.SetLine3D(activeNodeColor, 0.01f, activeNodeSquare);
 	}
 
@@ -125,11 +136,12 @@ public class GridInteraction : MonoBehaviour {
 		// now create the square
 		var output = new Vector3[5];
 		output[0] = centerNode + (new Vector3(-0.5f*nodeSize, 0.0f, -0.5f*nodeSize));
-		output[1] = centerNode + (new Vector3(-0.5f*nodeSize, 0.0f, 0.5f*nodeSize));
-		output[2] = centerNode + (new Vector3(0.5f*nodeSize, 0.0f, 0.5f*nodeSize));
-		output[3] = centerNode + (new Vector3(0.5f*nodeSize, 0.0f, -0.5f*nodeSize));
+		output[1] = centerNode + (new Vector3(-0.5f*nodeSize, 0.0f,  0.5f*nodeSize));
+		output[2] = centerNode + (new Vector3(0.5f*nodeSize,  0.0f,  0.5f*nodeSize));
+		output[3] = centerNode + (new Vector3(0.5f*nodeSize,  0.0f, -0.5f*nodeSize));
 		output[4] = output[0];
-		output = addVectorToArray(output, new Vector3(0.0f, distanceAboveTerrain, 0.0f));
+		//output = addVectorToArray(output, new Vector3(0.0f, distanceAboveTerrain, 0.0f));
+		output = output.Select(x => x + new Vector3(0.0f, distanceAboveTerrain, 0.0f)).ToArray();
 		return output;
 	}
 
@@ -155,7 +167,7 @@ public class GridInteraction : MonoBehaviour {
 				distance = curDistance;
 			}
 		}
-		if (distance > .707*nodeSize) { // hacky 1/sqrt(2) check to see if found object is inside node square
+		if (distance > .707 * nodeSize) { // hacky 1/sqrt(2) check to see if found object is inside node square
 			closest = null;
 		}
 		return closest;

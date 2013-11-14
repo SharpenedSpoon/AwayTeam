@@ -883,7 +883,7 @@ MonoBehaviour:
         - GUI Button (Move)
         - GUI Button (Aim)
         actionEnabled: 010101
-        actionIsOpen: 000101
+        actionIsOpen: 000000
         actionStartIndex: 000000000600000012000000
         actionHashCodes: 71d53d184cc8fcef4cc8fcef
         unityObjectParams: []

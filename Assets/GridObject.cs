@@ -4,17 +4,27 @@ using Pathfinding;
 
 public class GridObject : MonoBehaviour {
 
+	// Gameobjects and Components
+	public GridInteraction gridInteraction { get; private set; }
 	private GridGraph gridGraph;
-	public bool isActive = false;
 
-	// Use this for initialization
-	void Start () {
+	// Variables and numbers
+	public bool isActive { get; private set; }
+	protected RaycastHit hit;
+	private float nodeSize;
+
+
+	public virtual void Start () {
+		isActive = false;
+
 		gridGraph = AstarPath.active.astarData.gridGraph;
+		gridInteraction = GameObject.Find("GridInteractionController").GetComponent<GridInteraction>();
+
+		nodeSize = gridGraph.nodeSize;
 		transform.position = gridGraph.GetNearest(transform.position).clampedPosition;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	public virtual void Update () {
 	
 	}
 

@@ -929,8 +929,10 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
+     <Compile Include="Assets\GridCharacter.cs" />
      <Compile Include="Assets\GridInteraction.cs" />
      <Compile Include="Assets\GridObject.cs" />
+     <Compile Include="Assets\GridPlayerCharacter.cs" />
      <Compile Include="Assets\_SubfacetFiles\AITurnBased.cs" />
      <Compile Include="Assets\_SubfacetFiles\CharacterMeta.cs" />
      <Compile Include="Assets\_SubfacetFiles\PlayerHandler.cs" />
@@ -938,6 +940,7 @@
      <Compile Include="Assets\_SubfacetFiles\Subfacet\MyAIPath.cs" />
      <Compile Include="Assets\_SubfacetFiles\TurnBasedMovement.cs" />
      <Compile Include="Assets\_SubfacetFiles\TurnBasedShooting.cs" />
+     <Compile Include="Assets\testObject.cs" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

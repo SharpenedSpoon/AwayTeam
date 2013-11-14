@@ -135,8 +135,8 @@ MonoBehaviour:
   Health: 3
   Damage: 1
   Team: 0
-  MoveRange: 15
-  ShootRange: 30
+  MoveNodeRange: 3
+  ShootNodeRange: 10
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2125,7 +2125,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a19ae7ee23ed2487a8d846b41e761cc0, type: 3}
   m_Name: 
@@ -2150,7 +2150,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cdd6407b2e0a4d45ab6a3a6be0b34f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 56d532273380d44e5af50c131ba20d60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400014
