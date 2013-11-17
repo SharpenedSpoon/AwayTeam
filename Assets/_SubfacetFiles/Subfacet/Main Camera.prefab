@@ -95,13 +95,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c981101a86a3445e9868fcee22e47d0, type: 3}
+  m_Script: {fileID: 11500000, guid: b15780473129e394db2b927dd8e5e960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultNodeColor: {r: 0, g: 0, b: 0, a: 1}
-  playerNodeColor: {r: 0, g: 0, b: 1, a: 1}
-  enemyNodeColor: {r: 1, g: 0, b: 0, a: 1}
-  resourceNodeColor: {r: 1, g: .921568632, b: .0156862754, a: 1}
+  m_Page: coui://UIResources/MissionUI/index.html
+  m_Width: 1336
+  m_Height: 768
+  m_XPos: 0
+  m_YPos: 0
+  m_ScaleToFit: 0
+  m_InitialScript: 
+  m_ViewInputState: 2
+  m_IsTransparent: 0
+  m_SupportClickThrough: 0
+  m_ClickThroughAlphaThreshold: 0
+  m_ClickToFocus: 0
+  m_IsOnDemand: 0
+  m_ControlTimeOnDemand: 0
+  m_TargetFramerate: 60
+  m_DrawAfterPostEffects: 0
+  m_FlipY: 0
+  m_ReceivesInput: 0
+  m_InterceptAllEvents: 0
+  m_EnableBindingAttribute: 0
+  m_IsIndependentOfZBuffer: 0
+  m_ShowJavaScriptDialogs: 1
+  m_ForceSoftwareRendering: 0
+  m_UseCameraDimensions: 1
+  m_CorrectGamma: 0
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

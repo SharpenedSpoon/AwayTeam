@@ -46,6 +46,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample02_Facebook\FacebookSampleScript.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample03_MenuAndHUD\Game\ObjectPicker.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample03_MenuAndHUD\Main Menu\MenuScript.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample04_Binding\AutomaticBinding.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample04_Binding\GameOptions.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample04_Binding\InputForward.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample04_Binding\ManualBinding.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample04_Binding\MyMath.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\ArchiveInputForward.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\CustomFileHandlerScript.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\DataWriter.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\IArchiveDataWriter.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\ITarHeader.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\LegacyTarWriter.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\TarException.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\TarHeader.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\TarReader.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\TarWriter.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\UsTarHeader.cs" />
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample_MobileInput\BoxScript.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\AIPath.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\Seeker.cs" />
@@ -933,6 +953,7 @@
      <Compile Include="Assets\GridInteraction.cs" />
      <Compile Include="Assets\GridObject.cs" />
      <Compile Include="Assets\GridPlayerCharacter.cs" />
+     <Compile Include="Assets\TurnUI.cs" />
      <Compile Include="Assets\_SubfacetFiles\AITurnBased.cs" />
      <Compile Include="Assets\_SubfacetFiles\CharacterMeta.cs" />
      <Compile Include="Assets\_SubfacetFiles\PlayerHandler.cs" />
@@ -957,9 +978,11 @@
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Text (SoftClip).shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurves.shader" />
+     <None Include="Assets\CoherentUI\Copyright.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
+     <None Include="Assets\CoherentUI\Samples\Scenes\Sample06_Oculus\Readme.txt" />
      <None Include="Assets\GameAssets\Playmaker NGUI Scripts\Demo\Scrollbar Demo\Wooden\Arimo18.txt" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
@@ -1051,6 +1074,7 @@
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Standard Assets\Shaders\CoherentUI\DiffuseIgnoreZ.shader" />
      <None Include="Assets\GameAssets\Digital Nature\Shader\DoubleSidedButterfly.shader" />
      <None Include="Assets\GameAssets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
@@ -1062,6 +1086,7 @@
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
      <None Include="Assets\GameAssets\HUD Text\Examples\Atlases\Large.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth.shader" />
+     <None Include="Assets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
      <None Include="Assets\GameAssets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\GameAssets\Playmaker NGUI Scripts\Demo\Playmaker NGUI UI\FastGUIData.xml" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
@@ -1091,6 +1116,16 @@
  <Reference Include="Assets\GameAssets\Plugins\Vectrosity">
  <HintPath>Assets\GameAssets\Plugins\Vectrosity.dll</HintPath>
  </Reference>
+ <Reference Include="Assets\Plugins\CoherentUIMobileNet">
+ <HintPath>Assets\Plugins\CoherentUIMobileNet.dll</HintPath>
+ </Reference>
+ <Reference Include="Assets\Plugins\CoherentUINet">
+ <HintPath>Assets\Plugins\CoherentUINet.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{2F06E73B-ACE6-4A1D-336D-5D368E996E3A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

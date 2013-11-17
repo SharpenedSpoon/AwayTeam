@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample03_MenuAndHUD\Game\HUD.js" />
+     <Compile Include="Assets\CoherentUI\coherent.js" />
      <Compile Include="Assets\GameAssets\Cartoon Soldier\Scripts\Misc\autoDestroy.js" />
      <Compile Include="Assets\GameAssets\Cartoon Soldier\Scripts\Misc\bulletHoleProperty.js" />
      <Compile Include="Assets\GameAssets\Cartoon Soldier\Scripts\Misc\externalCamera.js" />
@@ -124,6 +126,8 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.js" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Camera Scripts\SmoothLookAt.js" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\General Scripts\DragRigidbody.js" />
+     <Compile Include="Assets\_SubfacetFiles\UIResources\common\coherent.js" />
+     <Compile Include="Assets\_SubfacetFiles\UIResources\common\jquery.min.js" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
@@ -140,9 +144,11 @@
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Text (SoftClip).shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrectionCurves.shader" />
+     <None Include="Assets\CoherentUI\Copyright.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\NFAA.shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
+     <None Include="Assets\CoherentUI\Samples\Scenes\Sample06_Oculus\Readme.txt" />
      <None Include="Assets\GameAssets\Playmaker NGUI Scripts\Demo\Scrollbar Demo\Wooden\Arimo18.txt" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\VignetteShader.shader" />
@@ -234,6 +240,7 @@
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_Antialiasing\FXAA2.shader" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Plugins\JsonFx\Readme.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\ColorCorrection3DLut.shader" />
+     <None Include="Assets\Standard Assets\Shaders\CoherentUI\DiffuseIgnoreZ.shader" />
      <None Include="Assets\GameAssets\Digital Nature\Shader\DoubleSidedButterfly.shader" />
      <None Include="Assets\GameAssets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
@@ -245,6 +252,7 @@
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\BlendModesOverlay.shader" />
      <None Include="Assets\GameAssets\HUD Text\Examples\Atlases\Large.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth.shader" />
+     <None Include="Assets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
      <None Include="Assets\GameAssets\NGUI\Examples\Atlases\SciFi\SciFi Font - Normal.txt" />
      <None Include="Assets\GameAssets\Playmaker NGUI Scripts\Demo\Playmaker NGUI UI\FastGUIData.xml" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\SimpleClear.shader" />
@@ -274,6 +282,16 @@
  <Reference Include="Assets\GameAssets\Plugins\Vectrosity">
  <HintPath>Assets\GameAssets\Plugins\Vectrosity.dll</HintPath>
  </Reference>
+ <Reference Include="Assets\Plugins\CoherentUIMobileNet">
+ <HintPath>Assets\Plugins\CoherentUIMobileNet.dll</HintPath>
+ </Reference>
+ <Reference Include="Assets\Plugins\CoherentUINet">
+ <HintPath>Assets\Plugins\CoherentUINet.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{2F06E73B-ACE6-4A1D-336D-5D368E996E3A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
