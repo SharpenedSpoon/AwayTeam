@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/style.css" rel="stylesheet" media="screen">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/coherent.js"></script>
+	<script>
+	function changeTurn() {
+		if ($('#turn').html() == 'Player Turn') {
+			$('#turn').html('Enemy Turn');
+		} else {
+			$('#turn').html('Player Turn');
+		}
+	}
+	$(function() {
+		$('#button_end_turn').click(function() {
+			//engine.call('changeTurn');
+			changeTurn();
+		});
+		$('#button_move').click(function() {
+			//engine.call('startMovement');
+		});
+		$('#button_shoot').click(function() {
+			//engine.call('startShooting');
+		});
+	});
+	</script>
+</head>
+<body>
+<span id="turn">Player Turn</span>
+<div id="buttons-container">
+	<button type="button" id="button_move" class="btn btn-primary">Move</button>
+	<button type="button" id="button_shoot" class="btn btn-secondary">Shoot</button>
+	<button type="button" id="button_end_turn" class="btn btn-warning">End Turn</button>
+</div>
+</body>
+</html>

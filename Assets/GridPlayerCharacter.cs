@@ -9,7 +9,7 @@ public class GridPlayerCharacter : GridCharacter {
 	// Gameobjects and Components
 
 	// Variables and numbers
-	private Vector3 lastMouseNodePosition;
+	private Vector3 lastMouseNodePosition = Vector3.zero;
 	private bool validMovementPath = false;
 	private bool validAimingPath = false;
 
@@ -22,7 +22,6 @@ public class GridPlayerCharacter : GridCharacter {
 
 	public override void Start () {
 		base.Start();
-		lastMouseNodePosition = Vector3.zero;
 	}
 
 	public override void Update () {
@@ -30,7 +29,11 @@ public class GridPlayerCharacter : GridCharacter {
 			if (isPlanningMovement) {
 				handleMovementPlanning();
 			} else if (isMoving) {
-				//
+				var angToTarget = Vector3.Angle(transform.position, pathVector[1]);
+				if (angToTarget != Vector3.Angle(transform.position, transform.position + transform.forward)) {
+					//RotateTowards(angToTarget);
+				}
+				//controller.SimpleMove(moveSpeed * transform.forward);
 			} else if (isPlanningShooting) {
 				handleShootingPlanning();
 			} else if (isShooting) {

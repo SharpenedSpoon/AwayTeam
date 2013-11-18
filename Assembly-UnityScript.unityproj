@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample03_MenuAndHUD\Game\HUD.js" />
-     <Compile Include="Assets\CoherentUI\coherent.js" />
      <Compile Include="Assets\GameAssets\Cartoon Soldier\Scripts\Misc\autoDestroy.js" />
      <Compile Include="Assets\GameAssets\Cartoon Soldier\Scripts\Misc\bulletHoleProperty.js" />
      <Compile Include="Assets\GameAssets\Cartoon Soldier\Scripts\Misc\externalCamera.js" />
@@ -126,8 +125,6 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.js" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Camera Scripts\SmoothLookAt.js" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\General Scripts\DragRigidbody.js" />
-     <Compile Include="Assets\_SubfacetFiles\UIResources\common\coherent.js" />
-     <Compile Include="Assets\_SubfacetFiles\UIResources\common\jquery.min.js" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

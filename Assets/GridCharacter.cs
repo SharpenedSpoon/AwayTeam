@@ -8,8 +8,12 @@ public class GridCharacter : GridObject {
 	// Gameobjects and components
 	private CharacterMeta characterMeta;
 	protected Seeker seeker;
+	protected CharacterController controller;
+	public float moveSpeed = 1.0f;
+	public float turningSpeed = 1.0f;
 
 	// Variables and bools and arrays
+	protected bool isIdle = true;
 	protected bool isPlanningMovement = false;
 	protected bool isMoving = false;
 	protected bool isPlanningShooting = false;
@@ -19,11 +23,29 @@ public class GridCharacter : GridObject {
 		base.Start();
 		characterMeta = GetComponent<CharacterMeta>();
 		seeker = GetComponent<Seeker>();
+		controller = GetComponent<CharacterController>();
 	}
 
 	public override void Update () {
 		base.Update();
-	
+
+		if (hasControl) {
+			if (isIdle) {
+				if (Input.GetKeyDown(KeyCode.M)) {
+					BeginPlanningMovement();
+				} else if (Input.GetKeyDown(KeyCode.S)) {
+					BeginPlanningShooting();
+				}
+			} else if (isPlanningMovement) {
+				if (Input.GetKeyDown(KeyCode.M)) {
+					BeginMoving();
+				}
+			} else if (isPlanningShooting) {
+				if (Input.GetKeyDown(KeyCode.S)) {
+					BeginShooting();
+				}
+			}
+		}
 	}
 
 	public bool CheckValidShootingTarget(GameObject targetObject) {
@@ -61,6 +83,7 @@ public class GridCharacter : GridObject {
 	}
 
 	public void BeginPlanningMovement() {
+		isIdle = false;
 		isPlanningMovement = true;
 	}
 	
@@ -75,9 +98,11 @@ public class GridCharacter : GridObject {
 	
 	public void EndMovement() {
 		isMoving = false;
+		isIdle = true;
 	}
 	
 	public void BeginPlanningShooting() {
+		isIdle = true;
 		isPlanningShooting = true;
 	}
 	
@@ -92,5 +117,19 @@ public class GridCharacter : GridObject {
 	
 	public void EndShooting() {
 		isShooting = false;
+		isIdle = true;
+	}
+
+	protected virtual void RotateTowards (Vector3 dir) {
+		Quaternion rot = tr.rotation;
+		Quaternion toTarget = Quaternion.LookRotation(dir);
+		
+		rot = Quaternion.Slerp (rot, toTarget, turningSpeed*Time.fixedDeltaTime);
+		Vector3 euler = rot.eulerAngles;
+		euler.z = 0;
+		euler.x = 0;
+		rot = Quaternion.Euler (euler);
+		
+		tr.rotation = rot;
 	}
 }

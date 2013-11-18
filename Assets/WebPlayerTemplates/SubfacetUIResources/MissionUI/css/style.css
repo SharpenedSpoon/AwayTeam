@@ -1,0 +1,10 @@
+#buttons-container {
+	position: fixed;
+	bottom: 5%;
+	left: 50%;
+	text-align: center;
+}
+
+body {
+	background: rgba(255,255,255,0);
+}

@@ -93,12 +93,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b15780473129e394db2b927dd8e5e960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Page: coui://UIResources/MissionUI/index.html
+  m_Page: coui://SubfacetUIResources/MissionUI/index.html
   m_Width: 1336
   m_Height: 768
   m_XPos: 0
@@ -106,8 +106,8 @@ MonoBehaviour:
   m_ScaleToFit: 0
   m_InitialScript: 
   m_ViewInputState: 2
-  m_IsTransparent: 0
-  m_SupportClickThrough: 0
+  m_IsTransparent: 1
+  m_SupportClickThrough: 1
   m_ClickThroughAlphaThreshold: 0
   m_ClickToFocus: 0
   m_IsOnDemand: 0

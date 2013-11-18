@@ -14,10 +14,11 @@ public class GridInteraction : MonoBehaviour {
 	public GameObject activePlayer { get; private set; }
 	private GridGraph gridGraph;
 	private Terrain activeTerrain;
-	//private PlayMakerFSM turnManagerFsm;
 
 	// Variables and numbers and arrays and stuff
 	public Vector3 currentNode { get; private set; }
+	[HideInInspector]
+	public bool hasControl = true;
 	private float nodeSize;
 	private Vector3[] currentNodeSquare;
 	private Vector3[] activeNodeSquare;
@@ -39,7 +40,6 @@ public class GridInteraction : MonoBehaviour {
 
 		nodeSize = gridGraph.nodeSize;
 		currentNode = Vector3.zero;
-		//turnManagerFsm = GameObject.Find("TurnManager").GetComponent<PlayMakerFSM>();
 
 		currentGridObject = null;
 		activeGridObject = null;
@@ -48,12 +48,21 @@ public class GridInteraction : MonoBehaviour {
 	void Update () {
 		selectCurrentGridNode();
 		drawActiveGridObjectNode();
-
-		if (Input.GetMouseButtonDown(0)) {
-			if (FsmVariables.GlobalVariables.GetFsmBool("IsPlayerTurn").Value) {
-				updateActiveGridObject();
+		if (hasControl) {
+			if (Input.GetMouseButtonDown(0)) {
+				if (FsmVariables.GlobalVariables.GetFsmBool("IsPlayerTurn").Value) {
+					updateActiveGridObject();
+				}
 			}
 		}
+	}
+
+	public void LoseControl() {
+		hasControl = false;
+	}
+	
+	public void GainControl() {
+		hasControl = true;
 	}
 
 	private void selectCurrentGridNode() {
@@ -111,12 +120,16 @@ public class GridInteraction : MonoBehaviour {
 			// reset the active object if you click on anything
 			// this is twofold: allow you to unselect stuff, as well as allow switching between objects
 			activeGridObject.SendMessage("MakeInactive");
+			activeGridObject.SendMessage("LoseControl");
 			activeGridObject = null;
+			GainControl();
 		}
 		if (currentGridObject != null) {
 			// switch the active object to be the currently highlighted one
 			currentGridObject.SendMessage("MakeActive");
+			currentGridObject.SendMessage("GainControl");
 			activeGridObject = currentGridObject;
+			LoseControl();
 		}
 	}
 	
