@@ -25,6 +25,7 @@ public class GridPlayerCharacter : GridCharacter {
 	}
 
 	public override void Update () {
+		base.Update();
 		if (gridInteraction.activeGridObject == gameObject) {
 			if (isPlanningMovement) {
 				handleMovementPlanning();
@@ -34,8 +35,11 @@ public class GridPlayerCharacter : GridCharacter {
 			} else if (isPlanningShooting) {
 				handleShootingPlanning();
 			} else if (isShooting) {
-				//
+				ShootAtTarget();
+				EndShooting();
 			}
+		} else {
+			lastMouseNodePosition = Vector3.zero;
 		}
 	}
 
@@ -45,9 +49,9 @@ public class GridPlayerCharacter : GridCharacter {
 			getMovementPath();
 			checkValidMovement();
 		}
-		if (validMovementPath) {
+		//if (validMovementPath) {
 			drawMovement();
-		}
+		//}
 	}
 
 	private void getMovementPath() {
@@ -61,12 +65,11 @@ public class GridPlayerCharacter : GridCharacter {
 
 	private void checkValidMovement() {
 		if (path == null) {
-			return;
-		}
-		if (pathVector.Length <= 1) {
+			validMovementPath = false;
+		} else if (pathVector.Length <= 1) {
 			validMovementPath = false;
 		} else {
-			validMovementPath = CheckValidMovementPath(pathVector);
+			validMovementPath = CheckValidMovementPath(path);
 		}
 
 		if (validMovementPath) {
@@ -77,12 +80,19 @@ public class GridPlayerCharacter : GridCharacter {
 	}
 
 	private void drawMovement() {
-		Vectrosity.VectorLine.SetLine3D(Color.green, 0.01f, pathVector);
+		if (path != null && pathVector.Length > 1) {
+			Vectrosity.VectorLine.SetLine3D(Color.green, 0.01f, pathVector);
+		}
 	}
 
 	private void handleShootingPlanning() {
-		aimAtMouse();
-		checkValidAiming();
+		//aimAtMouse();
+		if (lastMouseNodePosition != gridInteraction.currentNode) {
+			lastMouseNodePosition = gridInteraction.currentNode;
+			aimAtNode();
+			checkValidAiming();
+		}
+		//checkValidAiming();
 		drawAiming();
 	}
 	
@@ -93,6 +103,12 @@ public class GridPlayerCharacter : GridCharacter {
 		pathVector = new Vector3[2];
 		pathVector[0] = transform.position + (1.0f * Vector3.up);
 		pathVector[1] = hit.point + (1.0f * Vector3.up);
+	}
+
+	private void aimAtNode() {
+		pathVector = new Vector3[2];
+		pathVector[0] = transform.position + (1.0f * Vector3.up);
+		pathVector[1] = lastMouseNodePosition + (1.0f * Vector3.up);
 	}
 	
 	private void checkValidAiming() {

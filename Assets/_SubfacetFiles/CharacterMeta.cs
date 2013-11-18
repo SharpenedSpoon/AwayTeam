@@ -9,6 +9,9 @@ public class CharacterMeta : MonoBehaviour {
 	public int Team = 0;
 	public int MoveNodeRange = 3;
 	public int ShootNodeRange = 10;
+	public int MaxActions = 2;
+	[HideInInspector]
+	public int actions;
 	public float moveRange { get; private set; }
 	public float shootRange { get; private set; }
 
@@ -35,10 +38,13 @@ public class CharacterMeta : MonoBehaviour {
 	}
 	
 	public void TakeDamage(float dmg) {
-		Damage -= dmg;
+		Health -= dmg;
 		Debug.Log("Took " + dmg.ToString("G") + " damage!");
-		hudText.Add(-123f, Color.red, 0f);
-		if (Damage <= 0.0f) {
+		if (hudText != null) {
+			hudText.Add(dmg, Color.red, 10f);
+		}
+		if (Health <= 0.0f) {
+			Debug.Log("Oh no! I died!");
 			Die();
 		}
 	}
@@ -53,5 +59,13 @@ public class CharacterMeta : MonoBehaviour {
 		} else {
 			return false;
 		}
+	}
+
+	public void ResetActions() {
+		actions = MaxActions;
+	}
+
+	public void ChangeActions(int amountToChange) {
+		actions += amountToChange;
 	}
 }

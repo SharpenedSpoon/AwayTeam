@@ -10,7 +10,8 @@ public class GridInteraction : MonoBehaviour {
 
 	// Objects and Components
 	public GameObject currentGridObject { get; private set; }
-	public GameObject activeGridObject { get; private set; }
+	[HideInInspector]
+	public GameObject activeGridObject;
 	public GameObject activePlayer { get; private set; }
 	private GridGraph gridGraph;
 	private Terrain activeTerrain;
@@ -130,6 +131,7 @@ public class GridInteraction : MonoBehaviour {
 		}
 		if (currentGridObject != null) {
 			// switch the active object to be the currently highlighted one
+
 			currentGridObject.SendMessage("MakeActive");
 			currentGridObject.SendMessage("GainControl");
 			var thisFsm = currentGridObject.GetComponent<PlayMakerFSM>();

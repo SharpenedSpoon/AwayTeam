@@ -883,7 +883,7 @@ MonoBehaviour:
         - Find Closest Player
         - 
         actionEnabled: 01010101
-        actionIsOpen: 00010001
+        actionIsOpen: 01010001
         actionStartIndex: 00000000060000000900000010000000
         actionHashCodes: 71d53d1829b4727b7329085253489ed1
         unityObjectParams: []
@@ -2411,8 +2411,9 @@ MonoBehaviour:
   Health: 3
   Damage: 1
   Team: 0
-  MoveRange: 15
-  ShootRange: 30
+  MoveNodeRange: 3
+  ShootNodeRange: 10
+  MaxActions: 2
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2446,7 +2447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cdd6407b2e0a4d45ab6a3a6be0b34f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  hasControl: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -43,6 +43,15 @@ public class GridCharacter : GridObject {
 	public override void Update () {
 		base.Update();
 
+		if (isActive && characterMeta.actions <= 0) {
+			Debug.Log("Out of actions!");
+			MakeInactive();
+			LoseControl();
+			fsm.SendEvent("OutOfActions");
+			gridInteraction.GainControl();
+			gridInteraction.activeGridObject = null;
+		}
+
 		/*if (hasControl) {
 			if (isIdle) {
 				if (Input.GetKeyDown(KeyCode.M)) {
@@ -78,8 +87,11 @@ public class GridCharacter : GridObject {
 
 	public bool CheckValidShootingTarget(Vector3 targetPosition) {
 		var output = false;
+		var currentGridObject = gridInteraction.currentGridObject;
 		if (Vector3.Distance(transform.position, targetPosition) <= characterMeta.shootRange) {
-			output = true;
+			if (currentGridObject != null && currentGridObject.name != gameObject.name) {
+				output = true;
+			}
 		}
 		return output;
 	}
@@ -87,6 +99,14 @@ public class GridCharacter : GridObject {
 	public bool CheckValidMovementPath(Vector3[] movementPath) {
 		var output = false;
 		if (movementPath.Length <= characterMeta.moveRange) {
+			output = true;
+		}
+		return output;
+	}
+
+	public bool CheckValidMovementPath(Path p) {
+		var output = false;
+		if (p.path.Count <= characterMeta.MoveNodeRange) {
 			output = true;
 		}
 		return output;
@@ -134,6 +154,15 @@ public class GridCharacter : GridObject {
 				//return;
 			}
 		}
+	}
+
+	public bool ShootAtTarget() {
+		var currentGridObject = gridInteraction.currentGridObject;
+		if (currentGridObject == null) {
+			return false;
+		}
+		currentGridObject.SendMessage("TakeDamage", characterMeta.Damage);
+		return true;
 	}
 
 	public void BeginPlanningMovement() {
