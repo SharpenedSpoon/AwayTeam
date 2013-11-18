@@ -121,6 +121,10 @@ public class GridInteraction : MonoBehaviour {
 			// this is twofold: allow you to unselect stuff, as well as allow switching between objects
 			activeGridObject.SendMessage("MakeInactive");
 			activeGridObject.SendMessage("LoseControl");
+			var thisFsm = activeGridObject.GetComponent<PlayMakerFSM>();
+			if (thisFsm != null) {
+				thisFsm.SendEvent("BecomeInactive");
+			}
 			activeGridObject = null;
 			GainControl();
 		}
@@ -128,6 +132,10 @@ public class GridInteraction : MonoBehaviour {
 			// switch the active object to be the currently highlighted one
 			currentGridObject.SendMessage("MakeActive");
 			currentGridObject.SendMessage("GainControl");
+			var thisFsm = currentGridObject.GetComponent<PlayMakerFSM>();
+			if (thisFsm != null) {
+				thisFsm.SendEvent("BecomeActive");
+			}
 			activeGridObject = currentGridObject;
 			LoseControl();
 		}

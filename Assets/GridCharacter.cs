@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
+using HutongGames;
 
 public class GridCharacter : GridObject {
 
@@ -9,8 +10,9 @@ public class GridCharacter : GridObject {
 	private CharacterMeta characterMeta;
 	protected Seeker seeker;
 	protected CharacterController controller;
-	public float moveSpeed = 1.0f;
-	public float turningSpeed = 1.0f;
+	protected PlayMakerFSM fsm;
+	//public float moveSpeed = 1.0f;
+	//public float turningSpeed = 1.0f;
 
 	// Variables and bools and arrays
 	protected bool isIdle = true;
@@ -18,18 +20,30 @@ public class GridCharacter : GridObject {
 	protected bool isMoving = false;
 	protected bool isPlanningShooting = false;
 	protected bool isShooting = false;
+	protected Path path;
+	protected Vector3[] pathVector;
+
+	//The AI's speed per second
+	public float speed = 100;
+	
+	//The max distance from the AI to a waypoint for it to continue to the next waypoint
+	public float nextWaypointDistance = 0.5f;
+	
+	//The waypoint we are currently moving towards
+	protected int currentWaypoint = 0;
 
 	public override void Start () {
 		base.Start();
 		characterMeta = GetComponent<CharacterMeta>();
 		seeker = GetComponent<Seeker>();
 		controller = GetComponent<CharacterController>();
+		fsm = GetComponent<PlayMakerFSM>();
 	}
 
 	public override void Update () {
 		base.Update();
 
-		if (hasControl) {
+		/*if (hasControl) {
 			if (isIdle) {
 				if (Input.GetKeyDown(KeyCode.M)) {
 					BeginPlanningMovement();
@@ -45,7 +59,7 @@ public class GridCharacter : GridObject {
 					BeginShooting();
 				}
 			}
-		}
+		}*/
 	}
 
 	public bool CheckValidShootingTarget(GameObject targetObject) {
@@ -78,8 +92,48 @@ public class GridCharacter : GridObject {
 		return output;
 	}
 
-	public Path planMovement(Vector3 movementTarget) {
-		return seeker.StartPath(transform.position, movementTarget);
+	public void PlanMovement(Vector3 movementTarget) {
+		//return seeker.StartPath(transform.position, movementTarget);
+		seeker.StartPath(transform.position, movementTarget, OnPathComplete);
+	}
+
+	public void OnPathComplete (Path p) {
+		//We got our path back
+		if (p.error) {
+			//
+		} else {
+			//Yey, now we can get a Vector3 representation of the path
+			//from p.vectorPath
+			path = p;
+			pathVector = p.vectorPath.ToArray();
+			pathVector = addVectorToArray(pathVector, new Vector3(0.0f, 1.0f, 0.0f));
+			currentWaypoint = 0;
+		}
+	}
+
+	public void MoveAlongPath() {
+		if (path == null) {
+			//We have no path to move after yet
+			//return;
+		} else  if (currentWaypoint >= path.vectorPath.Count) {
+			Debug.Log ("End Of Path Reached");
+			transform.position = path.vectorPath[currentWaypoint-1];
+			EndMovement();
+			//return;
+		} else {
+		
+			//Direction to the next waypoint
+			Vector3 dir = (path.vectorPath[currentWaypoint]-transform.position).normalized;
+			dir *= speed * Time.fixedDeltaTime;
+			controller.SimpleMove (dir);
+			
+			//Check if we are close enough to the next waypoint
+			//If we are, proceed to follow the next waypoint
+			if (Vector3.Distance (transform.position,path.vectorPath[currentWaypoint]) < nextWaypointDistance) {
+				currentWaypoint++;
+				//return;
+			}
+		}
 	}
 
 	public void BeginPlanningMovement() {
@@ -99,6 +153,7 @@ public class GridCharacter : GridObject {
 	public void EndMovement() {
 		isMoving = false;
 		isIdle = true;
+		fsm.SendEvent("NextMovePhase");
 	}
 	
 	public void BeginPlanningShooting() {
@@ -118,9 +173,10 @@ public class GridCharacter : GridObject {
 	public void EndShooting() {
 		isShooting = false;
 		isIdle = true;
+		fsm.SendEvent("NextShootPhase");
 	}
 
-	protected virtual void RotateTowards (Vector3 dir) {
+	/*protected virtual void RotateTowards (Vector3 dir) {
 		Quaternion rot = tr.rotation;
 		Quaternion toTarget = Quaternion.LookRotation(dir);
 		
@@ -131,5 +187,5 @@ public class GridCharacter : GridObject {
 		rot = Quaternion.Euler (euler);
 		
 		tr.rotation = rot;
-	}
+	}*/
 }

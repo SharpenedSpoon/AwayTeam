@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Pathfinding;
 
 public class GridObject : MonoBehaviour {
@@ -31,6 +32,14 @@ public class GridObject : MonoBehaviour {
 
 	public virtual void Update () {
 	
+	}
+
+	protected Vector3[] addVectorToArray(Vector3[] vectorArray, Vector3 vectorToAdd) {
+		var vectorList = new List<Vector3>();
+		foreach (Vector3 vec in vectorArray) {
+			vectorList.Add(vec + vectorToAdd);
+		}
+		return vectorList.ToArray();
 	}
 
 	public void MakeActive() {
