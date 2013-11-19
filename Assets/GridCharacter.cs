@@ -7,7 +7,7 @@ using HutongGames;
 public class GridCharacter : GridObject {
 
 	// Gameobjects and components
-	private CharacterMeta characterMeta;
+	protected CharacterMeta characterMeta;
 	protected Seeker seeker;
 	protected CharacterController controller;
 	protected PlayMakerFSM fsm;
@@ -45,11 +45,7 @@ public class GridCharacter : GridObject {
 
 		if (isActive && characterMeta.actions <= 0) {
 			Debug.Log("Out of actions!");
-			MakeInactive();
-			LoseControl();
-			fsm.SendEvent("OutOfActions");
-			gridInteraction.GainControl();
-			gridInteraction.activeGridObject = null;
+			DeactivateCharacter();
 		}
 
 		/*if (hasControl) {
@@ -69,6 +65,14 @@ public class GridCharacter : GridObject {
 				}
 			}
 		}*/
+	}
+
+	public void DeactivateCharacter() {
+		MakeInactive();
+		LoseControl();
+		fsm.SendEvent("OutOfActions");
+		gridInteraction.GainControl();
+		gridInteraction.activeGridObject = null;
 	}
 
 	public bool CheckValidShootingTarget(GameObject targetObject) {
@@ -154,15 +158,6 @@ public class GridCharacter : GridObject {
 				//return;
 			}
 		}
-	}
-
-	public bool ShootAtTarget() {
-		var currentGridObject = gridInteraction.currentGridObject;
-		if (currentGridObject == null) {
-			return false;
-		}
-		currentGridObject.SendMessage("TakeDamage", characterMeta.Damage);
-		return true;
 	}
 
 	public void BeginPlanningMovement() {

@@ -35,7 +35,7 @@ public class GridPlayerCharacter : GridCharacter {
 			} else if (isPlanningShooting) {
 				handleShootingPlanning();
 			} else if (isShooting) {
-				ShootAtTarget();
+				shootAtTarget();
 				EndShooting();
 			}
 		} else {
@@ -119,7 +119,16 @@ public class GridPlayerCharacter : GridCharacter {
 			pathColor = Color.red;
 		}
 	}
-	
+
+	private bool shootAtTarget() {
+		var currentGridObject = gridInteraction.currentGridObject;
+		if (currentGridObject == null) {
+			return false;
+		}
+		currentGridObject.SendMessage("TakeDamage", characterMeta.Damage);
+		return true;
+	}
+
 	private void drawAiming() {
 		Vectrosity.VectorLine.SetLine3D(pathColor, 0.01f, pathVector);
 	}

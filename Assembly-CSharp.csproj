@@ -950,6 +950,7 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
      <Compile Include="Assets\GridCharacter.cs" />
+     <Compile Include="Assets\GridEnemyCharacter.cs" />
      <Compile Include="Assets\GridInteraction.cs" />
      <Compile Include="Assets\GridObject.cs" />
      <Compile Include="Assets\GridPlayerCharacter.cs" />
