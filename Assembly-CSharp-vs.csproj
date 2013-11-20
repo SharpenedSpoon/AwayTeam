@@ -66,6 +66,7 @@
      <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\TarWriter.cs" />
      <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample05_ArchiveResource\tar_cs\UsTarHeader.cs" />
      <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample_MobileInput\BoxScript.cs" />
+     <Compile Include="Assets\EnemyManager.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\AIPath.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\Seeker.cs" />

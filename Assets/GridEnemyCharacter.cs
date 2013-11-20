@@ -6,6 +6,7 @@ public class GridEnemyCharacter : GridCharacter {
 	// Gameobjects and components
 	private GameObject currentPlayerTarget = null;
 
+
 	// Use this for initialization
 	public override void Start () {
 		base.Start();
@@ -14,7 +15,7 @@ public class GridEnemyCharacter : GridCharacter {
 	// Update is called once per frame
 	public override void Update () {
 		base.Update();
-		if (gridInteraction.activeGridObject == gameObject) {
+		if (isActive) {
 			if (isPlanningMovement) {
 				handleMovementPlanning();
 			} else if (isMoving) {
@@ -26,8 +27,6 @@ public class GridEnemyCharacter : GridCharacter {
 				shootAtTarget();
 				EndShooting();
 			}
-		} else {
-			//lastMouseNodePosition = Vector3.zero;
 		}
 	}
 
