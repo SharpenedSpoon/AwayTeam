@@ -48,7 +48,16 @@ public class GridEnemyCharacter : GridCharacter {
 	}
 
 	private void handleMovementPlanning() {
-		PlanMovement(currentPlayerTarget.transform.position);
+		var destPos = currentPlayerTarget.transform.position;
+
+		// we can only aim as far as our shoot range. let's calculate that.
+		var dist = Vector3.Distance(transform.position, destPos);
+		var asdfadf = Mathf.Max(0.0f, Mathf.Min(1.0f, Mathf.Min(characterMeta.moveRange / dist, (characterMeta.moveRange / dist)))); // last part is "don't move closer than shoot range"
+		destPos = Vector3.Lerp (transform.position, destPos, asdfadf);
+		destPos = AstarPath.active.astarData.gridGraph.GetNearest(destPos).clampedPosition;
+
+		//PlanMovement(currentPlayerTarget.transform.position);
+		PlanMovement(destPos);
 		BeginMoving();
 	}
 

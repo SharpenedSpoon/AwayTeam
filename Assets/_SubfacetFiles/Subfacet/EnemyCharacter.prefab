@@ -2491,7 +2491,7 @@ MonoBehaviour:
   Damage: 1
   Team: 0
   MoveNodeRange: 3
-  ShootNodeRange: 10
+  ShootNodeRange: 5
   MaxActions: 2
   actions: 0
 --- !u!114 &11400012
