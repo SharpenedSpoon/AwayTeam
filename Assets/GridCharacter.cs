@@ -70,7 +70,9 @@ public class GridCharacter : GridObject {
 	public void DeactivateCharacter() {
 		MakeInactive();
 		LoseControl();
-		fsm.SendEvent("OutOfActions");
+		if (fsm != null) {
+			fsm.SendEvent("OutOfActions");
+		}
 		gridInteraction.GainControl();
 		gridInteraction.activeGridObject = null;
 	}
@@ -78,13 +80,13 @@ public class GridCharacter : GridObject {
 	public bool CheckValidShootingTarget(GameObject targetObject) {
 		var output = false;
 		if (Vector3.Distance(transform.position, targetObject.transform.position) <= characterMeta.shootRange) {
-			var ray = new Ray(transform.position, targetObject.transform.position - transform.position);
+			//var ray = new Ray(transform.position, targetObject.transform.position - transform.position);
 
-			if (Physics.Raycast(ray, out hit)) {
-				if (hit.rigidbody.gameObject == targetObject) {
+			//if (Physics.Raycast(ray, out hit)) {
+				//if (hit.rigidbody.gameObject == targetObject) {
 					output = true;
-				}
-			}
+				//}
+			//}
 		}
 		return output;
 	}
@@ -177,11 +179,13 @@ public class GridCharacter : GridObject {
 	public void EndMovement() {
 		isMoving = false;
 		isIdle = true;
-		fsm.SendEvent("NextMovePhase");
+		if (fsm != null) {
+			fsm.SendEvent("NextMovePhase");
+		}
 	}
 	
 	public void BeginPlanningShooting() {
-		isIdle = true;
+		isIdle = false;
 		isPlanningShooting = true;
 	}
 	
@@ -197,7 +201,9 @@ public class GridCharacter : GridObject {
 	public void EndShooting() {
 		isShooting = false;
 		isIdle = true;
-		fsm.SendEvent("NextShootPhase");
+		if (fsm != null) {
+			fsm.SendEvent("NextShootPhase");
+		}
 	}
 
 	/*protected virtual void RotateTowards (Vector3 dir) {

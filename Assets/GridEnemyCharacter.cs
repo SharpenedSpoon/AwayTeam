@@ -16,7 +16,11 @@ public class GridEnemyCharacter : GridCharacter {
 	public override void Update () {
 		base.Update();
 		if (isActive) {
-			if (isPlanningMovement) {
+			if (characterMeta.actions <= 0) {
+				MakeInactive();
+			} else if (isIdle) {
+				figureOutWhatToDo();
+			} else if (isPlanningMovement) {
 				handleMovementPlanning();
 			} else if (isMoving) {
 				drawMovement();
@@ -25,19 +29,27 @@ public class GridEnemyCharacter : GridCharacter {
 				handleShootingPlanning();
 			} else if (isShooting) {
 				shootAtTarget();
-				EndShooting();
+			}
+		}
+	}
+
+	private void figureOutWhatToDo() {
+		currentPlayerTarget = findClosestPlayer();
+		if (currentPlayerTarget == null) {
+			DeactivateCharacter();
+			return;
+		} else {
+			if (CheckValidShootingTarget(currentPlayerTarget)) {
+				BeginPlanningShooting();
+			} else {
+				BeginPlanningMovement();
 			}
 		}
 	}
 
 	private void handleMovementPlanning() {
-		currentPlayerTarget = findClosestPlayer();
-		if (currentPlayerTarget == null) {
-			DeactivateCharacter();
-			return;
-		}
 		PlanMovement(currentPlayerTarget.transform.position);
-		BeginMoving ();
+		BeginMoving();
 	}
 
 	private void drawMovement() {
@@ -47,13 +59,33 @@ public class GridEnemyCharacter : GridCharacter {
 	}
 
 	private void handleShootingPlanning() {
-		//
+
+		// --------
+		// do stuff
+		// --------
+
+		aimAtTarget();
+
+		BeginShooting();
 	}
 
 	private void shootAtTarget() {
-		//
+
+		// --------
+		// do stuff
+		// --------
+
+		currentPlayerTarget.SendMessage("TakeDamage", characterMeta.Damage);
+
+		EndShooting();
 	}
 
+	private void aimAtTarget() {
+		pathVector = new Vector3[2];
+		pathVector[0] = transform.position + (1.0f * Vector3.up);
+		pathVector[1] = currentPlayerTarget.transform.position + (1.0f * Vector3.up);
+	}
+	
 	private GameObject findClosestPlayer() {
 		GameObject[] gos;
 		gos = GameObject.FindGameObjectsWithTag("GridObject");

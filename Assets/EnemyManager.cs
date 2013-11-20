@@ -43,7 +43,7 @@ public class EnemyManager : MonoBehaviour {
 						EndEnemyTurn();
 					} else {
 						// if we have a currentEnemy, make them active
-						currentEnemy.SendMessage("BecomeActive");
+						currentEnemy.SendMessage("MakeActive");
 					}
 				}
 			}
@@ -54,6 +54,9 @@ public class EnemyManager : MonoBehaviour {
 		isEnemyTurn = true;
 		currentEnemy = null;
 		enemyCharacters.RemoveAll(item => item == null);
+		foreach (GameObject enemy in enemyCharacters) {
+			enemy.SendMessage("ResetActions");
+		}
 	}
 
 	public void EndEnemyTurn() {
