@@ -949,7 +949,6 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
-     <Compile Include="Assets\_SubfacetFiles\Scripts\AITurnBased.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\CharacterMeta.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\EnemyManager.cs" />
@@ -958,12 +957,13 @@
      <Compile Include="Assets\_SubfacetFiles\Scripts\GridInteraction.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\GridObject.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\GridPlayerCharacter.cs" />
-     <Compile Include="Assets\_SubfacetFiles\Scripts\MyAIPath.cs" />
-     <Compile Include="Assets\_SubfacetFiles\Scripts\PlayerHandler.cs" />
-     <Compile Include="Assets\_SubfacetFiles\Scripts\TurnBasedMovement.cs" />
-     <Compile Include="Assets\_SubfacetFiles\Scripts\TurnBasedShooting.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\TurnUI.cs" />
-     <Compile Include="Assets\_SubfacetFiles\Scripts\testObject.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\_old\AITurnBased.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\_old\MyAIPath.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\_old\PlayerHandler.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\_old\TurnBasedMovement.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\_old\TurnBasedShooting.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\_old\testObject.cs" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\GameAssets\SciFi level\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />
