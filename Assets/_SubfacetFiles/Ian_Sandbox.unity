@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasControl: 0
-  speed: 1000
+  speed: 3000
   nextWaypointDistance: .5
 --- !u!114 &152049370
 MonoBehaviour:
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   Damage: 1
-  Team: 0
+  Team: 1
   MoveNodeRange: 3
   ShootNodeRange: 5
   MaxActions: 2
@@ -2650,7 +2650,7 @@ Transform:
   m_PrefabInternal: {fileID: 1563276445}
   m_GameObject: {fileID: 224497037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 316.255035, y: 0, z: 241.968231}
+  m_LocalPosition: {x: 300.781494, y: 0, z: 223.456329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1233760156}
@@ -6381,7 +6381,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasControl: 0
-  speed: 1000
+  speed: 3000
   nextWaypointDistance: .5
 --- !u!114 &873695590
 MonoBehaviour:
@@ -6397,7 +6397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   Damage: 1
-  Team: 0
+  Team: 1
   MoveNodeRange: 3
   ShootNodeRange: 5
   MaxActions: 2
@@ -11503,7 +11503,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400002, guid: d7ef1f5c589fc4e3c9ad8ec23d6e4dbe, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 316.255035
+      value: 300.781494
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d7ef1f5c589fc4e3c9ad8ec23d6e4dbe, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11511,7 +11511,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d7ef1f5c589fc4e3c9ad8ec23d6e4dbe, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 241.968231
+      value: 223.456329
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d7ef1f5c589fc4e3c9ad8ec23d6e4dbe, type: 2}
       propertyPath: m_LocalRotation.x
@@ -15622,7 +15622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasControl: 0
-  speed: 1000
+  speed: 3000
   nextWaypointDistance: .5
 --- !u!143 &1874512840
 CharacterController:
@@ -18030,7 +18030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   Damage: 1
-  Team: 0
+  Team: 1
   MoveNodeRange: 3
   ShootNodeRange: 5
   MaxActions: 2

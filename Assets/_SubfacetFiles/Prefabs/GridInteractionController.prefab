@@ -38,6 +38,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c981101a86a3445e9868fcee22e47d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeGridObject: {fileID: 0}
+  hasControl: 1
   activeNodeColor: {r: 0, g: 1, b: 0, a: 1}
   defaultEmptyNodeColor: {r: 0, g: 0, b: 0, a: 1}
   defaultGridObjectNodeColor: {r: 1, g: 1, b: 1, a: 1}

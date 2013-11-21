@@ -2489,7 +2489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 3
   Damage: 1
-  Team: 0
+  Team: 1
   MoveNodeRange: 3
   ShootNodeRange: 5
   MaxActions: 2
@@ -2506,7 +2506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasControl: 0
-  speed: 1000
+  speed: 3000
   nextWaypointDistance: .5
 --- !u!143 &14300000
 CharacterController:
