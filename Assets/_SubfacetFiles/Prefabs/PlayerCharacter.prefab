@@ -1143,7 +1143,7 @@ MonoBehaviour:
         customNames:
         - 
         - Send Message (decrease actions)
-        actionEnabled: 0101
+        actionEnabled: 0100
         actionIsOpen: 0101
         actionStartIndex: 0000000004000000
         actionHashCodes: 6e5036b66e5036b6
@@ -1765,7 +1765,7 @@ MonoBehaviour:
         customNames:
         - 
         - Send Message (decrease actions)
-        actionEnabled: 0101
+        actionEnabled: 0100
         actionIsOpen: 0101
         actionStartIndex: 0000000004000000
         actionHashCodes: 6e5036b66e5036b6

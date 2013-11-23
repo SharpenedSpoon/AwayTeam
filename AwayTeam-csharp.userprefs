@@ -2,9 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/Scripts/GridCharacter.cs">
     <Files>
-      <File FileName="Assets/TerrainGeneration.cs" Line="39" Column="37" />
-      <File FileName="Assets/_SubfacetFiles/Scripts/GridPlayerCharacter.cs" Line="58" Column="31" />
-      <File FileName="Assets/_SubfacetFiles/Scripts/GridCharacter.cs" Line="182" Column="50" />
+      <File FileName="Assets/TerrainGeneration.cs" Line="1" Column="1" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridPlayerCharacter.cs" Line="86" Column="3" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridCharacter.cs" Line="259" Column="30" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridEnemyCharacter.cs" Line="60" Column="25" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/CharacterMeta.cs" Line="36" Column="43" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/EnemyManager.cs" Line="46" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

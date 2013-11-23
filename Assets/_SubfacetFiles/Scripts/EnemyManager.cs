@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour {
 	// Gameobjects and components
 	private PlayMakerFSM fsm;
 	private GameObject currentEnemy = null;
+	private CharacterMeta currentEnemyMeta;
 	private List<GameObject> enemyCharacters;
 
 	// Variables and arrays and bools
@@ -34,6 +35,8 @@ public class EnemyManager : MonoBehaviour {
 						// find the first enemy in the list that has actions, and set it to be the currentEnemy
 						if (enemy.GetComponent<CharacterMeta>().actions > 0) {
 							currentEnemy = enemy;
+							currentEnemyMeta = enemy.GetComponent<CharacterMeta>();
+							Debug.Log("Began enemy character's turn");
 							break;
 						}
 					}
@@ -44,6 +47,12 @@ public class EnemyManager : MonoBehaviour {
 					} else {
 						// if we have a currentEnemy, make them active
 						currentEnemy.SendMessage("MakeActive");
+					}
+				} else {
+					// check if current enemy has any actions
+					if (currentEnemyMeta.actions <= 0) {
+						currentEnemy = null;
+						Debug.Log("Current enemy character is out of turns");
 					}
 				}
 			}

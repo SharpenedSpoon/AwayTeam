@@ -178,15 +178,15 @@ public class GridCharacter : GridObject {
 			} else {
 				var inRange = new List<Vector3>();
 				var outOfRange = new List<Vector3>();
-				if (pathVector.Length - moveNodeRange == 1) {
-					outOfRange.Add(pathVector[moveNodeRange-1]);
+				if (pathVector.Length - moveNodeRange > 1) { // we have to account for the fact that the pathVector is 1, because of the starting node
+					outOfRange.Add(pathVector[moveNodeRange]);
 				}
 				//inRangePathVector = new Vector3[moveNodeRange];
 				//outOfRangePathVector = new Vector3[pathVector.Length - moveNodeRange];
 				for (int i = 0; i < pathVector.Length; i++) {
-					if (i < moveNodeRange) {
+					if (i < moveNodeRange + 1) {
 						inRange.Add(pathVector[i]);
-					} else
+					} else {
 						outOfRange.Add(pathVector[i]);
 					}
 				}
@@ -200,7 +200,7 @@ public class GridCharacter : GridObject {
 		if (path == null) {
 			//We have no path to move after yet
 			//return;
-		} else  if (currentWaypoint >= path.vectorPath.Count || currentWaypoint >= characterMeta.MoveNodeRange) {
+		} else  if (currentWaypoint >= path.vectorPath.Count || currentWaypoint > characterMeta.MoveNodeRange) {
 			Debug.Log ("End Of Path Reached");
 			transform.position = path.vectorPath[currentWaypoint-1];
 			EndMovement();
@@ -224,15 +224,18 @@ public class GridCharacter : GridObject {
 	public void BeginPlanningMovement() {
 		isIdle = false;
 		isPlanningMovement = true;
+		Debug.Log("GridCharacter: BeginPlanningMovement");
 	}
 	
 	public void EndPlanningMovement() {
 		isPlanningMovement = false;
+		Debug.Log("GridCharacter: EndPlanningMovement");
 	}
 	
 	public void BeginMoving() {
 		EndPlanningMovement();
 		isMoving = true;
+		Debug.Log("GridCharacter: BeginMoving");
 	}
 	
 	public void EndMovement() {
@@ -241,20 +244,26 @@ public class GridCharacter : GridObject {
 		if (fsm != null) {
 			fsm.SendEvent("NextMovePhase");
 		}
+		characterMeta.ChangeActions(-1);
+		path = null;
+		Debug.Log("GridCharacter: EndMovement");
 	}
 	
 	public void BeginPlanningShooting() {
 		isIdle = false;
 		isPlanningShooting = true;
+		Debug.Log("GridCharacter: BeginPlanningShooting");
 	}
 	
 	public void EndPlanningShooting() {
 		isPlanningShooting = false;
+		Debug.Log("GridCharacter: EndPlanningShooting");
 	}
 	
 	public void BeginShooting() {
 		EndPlanningShooting();
 		isShooting = true;
+		Debug.Log("GridCharacter: BeginShooting");
 	}
 	
 	public void EndShooting() {
@@ -263,6 +272,8 @@ public class GridCharacter : GridObject {
 		if (fsm != null) {
 			fsm.SendEvent("NextShootPhase");
 		}
+		characterMeta.ChangeActions(-1);
+		Debug.Log("GridCharacter: EndShooting");
 	}
 
 	/*protected virtual void RotateTowards (Vector3 dir) {

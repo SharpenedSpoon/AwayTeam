@@ -39,7 +39,7 @@ public class GridEnemyCharacter : GridCharacter {
 			DeactivateCharacter();
 			return;
 		} else {
-			if (CheckValidShootingTarget(currentPlayerTarget)) {
+			if (CheckValidShootingTarget(currentPlayerTarget.transform.position)) {
 				BeginPlanningShooting();
 			} else {
 				BeginPlanningMovement();
@@ -52,8 +52,8 @@ public class GridEnemyCharacter : GridCharacter {
 
 		// we can only aim as far as our shoot range. let's calculate that.
 		var dist = Vector3.Distance(transform.position, destPos);
-		var asdfadf = Mathf.Max(0.0f, Mathf.Min(1.0f, Mathf.Min(characterMeta.moveRange / dist, (characterMeta.moveRange / dist)))); // last part is "don't move closer than shoot range"
-		destPos = Vector3.Lerp (transform.position, destPos, asdfadf);
+		var lerpAmount = Mathf.Max(0.0f, Mathf.Min(1.0f, Mathf.Min(characterMeta.moveRange / dist, (characterMeta.moveRange / dist)))); // last part is "don't move closer than shoot range"
+		destPos = Vector3.Lerp (transform.position, destPos, lerpAmount);
 		destPos = AstarPath.active.astarData.gridGraph.GetNearest(destPos).clampedPosition;
 
 		//PlanMovement(currentPlayerTarget.transform.position);
@@ -62,8 +62,14 @@ public class GridEnemyCharacter : GridCharacter {
 	}
 
 	private void drawMovement() {
-		if (path != null && pathVector.Length > 1) {
+		/*if (path != null && pathVector.Length > 1) {
 			Vectrosity.VectorLine.SetLine3D(Color.green, 0.01f, pathVector);
+		}*/
+		if (path != null) {
+			Vectrosity.VectorLine.SetLine3D(Color.green, 0.01f, inRangePathVector);
+			if (outOfRangePathVector.Length > 0) {
+				Vectrosity.VectorLine.SetLine3D(Color.red, 0.01f, outOfRangePathVector);
+			}
 		}
 	}
 
@@ -78,6 +84,12 @@ public class GridEnemyCharacter : GridCharacter {
 		BeginShooting();
 	}
 
+	private void aimAtTarget() {
+		pathVector = new Vector3[2];
+		pathVector[0] = transform.position + (1.0f * Vector3.up);
+		pathVector[1] = currentPlayerTarget.transform.position + (1.0f * Vector3.up);
+	}
+
 	private void shootAtTarget() {
 
 		// --------
@@ -89,12 +101,6 @@ public class GridEnemyCharacter : GridCharacter {
 		EndShooting();
 	}
 
-	private void aimAtTarget() {
-		pathVector = new Vector3[2];
-		pathVector[0] = transform.position + (1.0f * Vector3.up);
-		pathVector[1] = currentPlayerTarget.transform.position + (1.0f * Vector3.up);
-	}
-	
 	private GameObject findClosestPlayer() {
 		GameObject[] gos;
 		gos = GameObject.FindGameObjectsWithTag("GridObject");
