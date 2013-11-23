@@ -91,13 +91,45 @@ public class GridCharacter : GridObject {
 		return output;
 	}
 
-	public bool CheckValidShootingTarget(Vector3 targetPosition) {
+	/*public bool CheckValidShootingTarget(Vector3 targetPosition) {
 		var output = false;
 		var currentGridObject = gridInteraction.currentGridObject;
 		if (Vector3.Distance(transform.position, targetPosition) <= characterMeta.shootRange) {
 			if (currentGridObject != null && currentGridObject.name != gameObject.name) {
 				output = true;
 			}
+		}
+		return output;
+	}*/
+
+	public bool CheckValidShootingTarget(Vector3 initialTargetPosition) {
+		var output = false;
+
+		// aim at 1.0 unit above ground
+		Vector3 targetPosition = initialTargetPosition;
+		targetPosition.y = Terrain.activeTerrain.SampleHeight(targetPosition);
+		targetPosition = targetPosition + new Vector3(0.0f, 1.0f, 0.0f);
+
+		// if in range at all
+		if (Vector3.Distance(transform.position, targetPosition) <= characterMeta.shootRange) {
+
+			// move the current object away to avoid accidental raycast hits
+			Vector3 originalPosition = transform.position;
+			//transform.position += new Vector3(0.0f, -1000.0f, 0.0f);
+			if (Physics.Raycast(Vector3.Lerp(originalPosition, targetPosition, 0.2f), targetPosition - originalPosition, out hit, Vector3.Distance(originalPosition, initialTargetPosition))) {
+				// we hit something
+				if (gridGraph.GetNearest(hit.point).clampedPosition == gridGraph.GetNearest(initialTargetPosition).clampedPosition) {
+					//var currentGridObject = gridInteraction.currentGridObject;
+					//if (currentGridObject != null && currentGridObject.name != gameObject.name) {
+						output = true;
+					//}
+				}
+			} else {
+				// we didn't hit anything
+				output = true;
+			}
+			//transform.position = originalPosition;
+
 		}
 		return output;
 	}

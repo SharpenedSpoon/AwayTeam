@@ -8,7 +8,7 @@ public class GridObject : MonoBehaviour {
 	// Gameobjects and Components
 	public GridInteraction gridInteraction { get; private set; }
 	protected Transform tr;
-	private GridGraph gridGraph;
+	protected GridGraph gridGraph;
 
 	// Variables and numbers
 	public bool isActive { get; private set; }

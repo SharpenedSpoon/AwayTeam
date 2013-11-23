@@ -949,9 +949,11 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
+     <Compile Include="Assets\TerrainGeneration.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\CharacterMeta.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\EnemyManager.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\FileUtility.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\GridCharacter.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\GridEnemyCharacter.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\GridInteraction.cs" />
