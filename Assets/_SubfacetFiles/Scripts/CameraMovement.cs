@@ -21,16 +21,16 @@ public class CameraMovement : MonoBehaviour {
 		horizontalMovement = 0.0f;
 		verticalMovement = 0.0f;
 		depthMovement = 0.0f;
-		if (Input.GetKey(KeyCode.LeftArrow)) {
+		if (Input.GetKey(KeyCode.A)) {
 			horizontalMovement -= 1.0f;
 		}
-		if (Input.GetKey(KeyCode.RightArrow)) {
+		if (Input.GetKey(KeyCode.D)) {
 			horizontalMovement += 1.0f;
 		}
-		if (Input.GetKey(KeyCode.DownArrow)) {
+		if (Input.GetKey(KeyCode.S)) {
 			verticalMovement -= 1.0f;
 		}
-		if (Input.GetKey(KeyCode.UpArrow)) {
+		if (Input.GetKey(KeyCode.W)) {
 			verticalMovement += 1.0f;
 		}
 		if (Input.GetKey(KeyCode.F)) {
