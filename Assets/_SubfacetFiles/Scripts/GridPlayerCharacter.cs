@@ -80,8 +80,14 @@ public class GridPlayerCharacter : GridCharacter {
 	}
 
 	private void drawMovement() {
-		if (path != null && pathVector.Length > 1) {
+		/*if (path != null && pathVector.Length > 1) {
 			Vectrosity.VectorLine.SetLine3D(Color.green, 0.01f, pathVector);
+		}*/
+		if (path != null) {
+			Vectrosity.VectorLine.SetLine3D(Color.green, 0.01f, inRangePathVector);
+			if (outOfRangePathVector.Length > 0) {
+				Vectrosity.VectorLine.SetLine3D(Color.red, 0.01f, outOfRangePathVector);
+			}
 		}
 	}
 

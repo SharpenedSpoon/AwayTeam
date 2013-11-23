@@ -29,14 +29,14 @@ public class TerrainGeneration : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.Z)) {
+		if (Input.GetKeyDown(KeyCode.J)) {
 			step = Mathf.Min(tHeight, tWidth);
 			resetHeightMap();
 		}
-		if (Input.GetKeyDown(KeyCode.X)) {
+		if (Input.GetKeyDown(KeyCode.K)) {
 			rnd = new System.Random(seed);
 		}
-		if (Input.GetKeyDown(KeyCode.C)) {
+		if (Input.GetKeyDown(KeyCode.L)) {
 			seedHeightMap();
 		}
 		if (Input.GetKeyDown(KeyCode.Space)) {

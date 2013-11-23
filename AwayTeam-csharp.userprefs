@@ -1,8 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/TerrainGeneration.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/Scripts/GridCharacter.cs">
     <Files>
-      <File FileName="Assets/TerrainGeneration.cs" Line="46" Column="38" />
+      <File FileName="Assets/TerrainGeneration.cs" Line="39" Column="37" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridPlayerCharacter.cs" Line="58" Column="31" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridCharacter.cs" Line="182" Column="50" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -21,7 +21,10 @@ public class GridCharacter : GridObject {
 	protected bool isPlanningShooting = false;
 	protected bool isShooting = false;
 	protected Path path;
+	//protected Path fullPath;
 	protected Vector3[] pathVector;
+	protected Vector3[] inRangePathVector;
+	protected Vector3[] outOfRangePathVector;
 
 	//The AI's speed per second
 	public float speed = 100;
@@ -166,6 +169,30 @@ public class GridCharacter : GridObject {
 			pathVector = p.vectorPath.ToArray();
 			pathVector = addVectorToArray(pathVector, new Vector3(0.0f, 1.0f, 0.0f));
 			currentWaypoint = 0;
+
+			// Create the in- and out-of- range drawing paths
+			int moveNodeRange = characterMeta.MoveNodeRange;
+			if (pathVector.Length <= moveNodeRange) {
+				inRangePathVector = pathVector;
+				outOfRangePathVector = new Vector3[0];
+			} else {
+				var inRange = new List<Vector3>();
+				var outOfRange = new List<Vector3>();
+				if (pathVector.Length - moveNodeRange == 1) {
+					outOfRange.Add(pathVector[moveNodeRange-1]);
+				}
+				//inRangePathVector = new Vector3[moveNodeRange];
+				//outOfRangePathVector = new Vector3[pathVector.Length - moveNodeRange];
+				for (int i = 0; i < pathVector.Length; i++) {
+					if (i < moveNodeRange) {
+						inRange.Add(pathVector[i]);
+					} else
+						outOfRange.Add(pathVector[i]);
+					}
+				}
+				inRangePathVector = inRange.ToArray();
+				outOfRangePathVector = outOfRange.ToArray();
+			}
 		}
 	}
 
@@ -173,7 +200,7 @@ public class GridCharacter : GridObject {
 		if (path == null) {
 			//We have no path to move after yet
 			//return;
-		} else  if (currentWaypoint >= path.vectorPath.Count) {
+		} else  if (currentWaypoint >= path.vectorPath.Count || currentWaypoint >= characterMeta.MoveNodeRange) {
 			Debug.Log ("End Of Path Reached");
 			transform.position = path.vectorPath[currentWaypoint-1];
 			EndMovement();
