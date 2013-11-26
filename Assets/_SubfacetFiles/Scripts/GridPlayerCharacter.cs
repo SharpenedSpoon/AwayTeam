@@ -37,6 +37,11 @@ public class GridPlayerCharacter : GridCharacter {
 			} else if (isShooting) {
 				shootAtTarget();
 				EndShooting();
+			} else if (isPlanningGathering) {
+				handleGatheringPlanning();
+			} else if (isGathering) {
+				gatherTarget();
+				EndGathering();
 			}
 		} else {
 			lastMouseNodePosition = Vector3.zero;
@@ -137,5 +142,32 @@ public class GridPlayerCharacter : GridCharacter {
 
 	private void drawAiming() {
 		Vectrosity.VectorLine.SetLine3D(pathColor, 0.01f, pathVector);
+	}
+
+	private void handleGatheringPlanning() {
+		if (lastMouseNodePosition != gridInteraction.currentNode) {
+			lastMouseNodePosition = gridInteraction.currentNode;
+			aimAtNode();
+			checkValidGathering();
+		}
+		drawAiming();
+	}
+
+	private void checkValidGathering() {
+		validAimingPath = CheckValidGatheringTarget(pathVector[1]);
+		if (validAimingPath) {
+			pathColor = Color.green;
+		} else {
+			pathColor = Color.red;
+		}
+	}
+
+	private void gatherTarget() {
+		var currentGridObject = gridInteraction.currentGridObject;
+		if (currentGridObject == null) {
+			return;
+		}
+		currentGridObject.SendMessage("TakeDamage", characterMeta.Damage);
+		return;
 	}
 }

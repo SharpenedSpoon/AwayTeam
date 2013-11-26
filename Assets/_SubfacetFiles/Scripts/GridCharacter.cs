@@ -6,6 +6,8 @@ using HutongGames;
 
 public class GridCharacter : GridObject {
 
+	public bool LogEvents = false;
+
 	// Gameobjects and components
 	protected CharacterMeta characterMeta;
 	protected Seeker seeker;
@@ -20,6 +22,8 @@ public class GridCharacter : GridObject {
 	protected bool isMoving = false;
 	protected bool isPlanningShooting = false;
 	protected bool isShooting = false;
+	protected bool isPlanningGathering = false;
+	protected bool isGathering = false;
 	protected Path path;
 	//protected Path fullPath;
 	protected Vector3[] pathVector;
@@ -105,17 +109,17 @@ public class GridCharacter : GridObject {
 		return output;
 	}*/
 
-	public bool CheckValidShootingTarget(Vector3 initialTargetPosition) {
+	public bool CheckValidTarget(Vector3 initialTargetPosition, float range) {
 		var output = false;
-
+		
 		// aim at 1.0 unit above ground
 		Vector3 targetPosition = initialTargetPosition;
 		targetPosition.y = Terrain.activeTerrain.SampleHeight(targetPosition);
 		targetPosition = targetPosition + new Vector3(0.0f, 1.0f, 0.0f);
-
+		
 		// if in range at all
-		if (Vector3.Distance(transform.position, targetPosition) <= characterMeta.shootRange) {
-
+		if (Vector3.Distance(transform.position, targetPosition) <= range) {
+			
 			// move the current object away to avoid accidental raycast hits
 			Vector3 originalPosition = transform.position;
 			//transform.position += new Vector3(0.0f, -1000.0f, 0.0f);
@@ -124,7 +128,7 @@ public class GridCharacter : GridObject {
 				if (gridGraph.GetNearest(hit.point).clampedPosition == gridGraph.GetNearest(initialTargetPosition).clampedPosition) {
 					//var currentGridObject = gridInteraction.currentGridObject;
 					//if (currentGridObject != null && currentGridObject.name != gameObject.name) {
-						output = true;
+					output = true;
 					//}
 				}
 			} else {
@@ -132,9 +136,23 @@ public class GridCharacter : GridObject {
 				output = true;
 			}
 			//transform.position = originalPosition;
-
+			
 		}
 		return output;
+	}
+
+	public bool CheckValidShootingTarget(Vector3 initialTargetPosition) {
+		return CheckValidTarget(initialTargetPosition, characterMeta.shootRange);
+	}
+
+	public bool CheckValidGatheringTarget(Vector3 initialTargetPosition) {
+		if (CheckValidTarget(initialTargetPosition, characterMeta.gatherRange)) {
+			if (gridInteraction.currentGridObject != null && gridInteraction.currentGridObject.name == "CollectibleResource") {
+				return true;
+			}
+		}
+		return false;
+		//return CheckValidTarget(initialTargetPosition, characterMeta.gatherRange);
 	}
 
 	public bool CheckValidMovementPath(Vector3[] movementPath) {
@@ -224,18 +242,18 @@ public class GridCharacter : GridObject {
 	public void BeginPlanningMovement() {
 		isIdle = false;
 		isPlanningMovement = true;
-		Debug.Log("GridCharacter: BeginPlanningMovement");
+		if (LogEvents) { Debug.Log("GridCharacter: BeginPlanningMovement"); }
 	}
 	
 	public void EndPlanningMovement() {
 		isPlanningMovement = false;
-		Debug.Log("GridCharacter: EndPlanningMovement");
+		if (LogEvents) { Debug.Log("GridCharacter: EndPlanningMovement"); }
 	}
 	
 	public void BeginMoving() {
 		EndPlanningMovement();
 		isMoving = true;
-		Debug.Log("GridCharacter: BeginMoving");
+		if (LogEvents) { Debug.Log("GridCharacter: BeginMoving"); }
 	}
 	
 	public void EndMovement() {
@@ -246,24 +264,24 @@ public class GridCharacter : GridObject {
 		}
 		characterMeta.ChangeActions(-1);
 		path = null;
-		Debug.Log("GridCharacter: EndMovement");
+		if (LogEvents) { Debug.Log("GridCharacter: EndMovement"); }
 	}
 	
 	public void BeginPlanningShooting() {
 		isIdle = false;
 		isPlanningShooting = true;
-		Debug.Log("GridCharacter: BeginPlanningShooting");
+		if (LogEvents) { Debug.Log("GridCharacter: BeginPlanningShooting"); }
 	}
 	
 	public void EndPlanningShooting() {
 		isPlanningShooting = false;
-		Debug.Log("GridCharacter: EndPlanningShooting");
+		if (LogEvents) { Debug.Log("GridCharacter: EndPlanningShooting"); }
 	}
 	
 	public void BeginShooting() {
 		EndPlanningShooting();
 		isShooting = true;
-		Debug.Log("GridCharacter: BeginShooting");
+		if (LogEvents) { Debug.Log("GridCharacter: BeginShooting"); }
 	}
 	
 	public void EndShooting() {
@@ -273,7 +291,32 @@ public class GridCharacter : GridObject {
 			fsm.SendEvent("NextShootPhase");
 		}
 		characterMeta.ChangeActions(-1);
-		Debug.Log("GridCharacter: EndShooting");
+		if (LogEvents) { Debug.Log("GridCharacter: EndShooting"); }
+	}
+
+	public void BeginPlanningGathering() {
+		isPlanningGathering = true;
+		if (LogEvents) { Debug.Log("GridCharacter: BeginPlanningGathering"); }
+	}
+
+	public void EndPlanningGathering() {
+		isPlanningGathering = false;
+		if (LogEvents) { Debug.Log("GridCharacter: EndPlanningGathering"); }
+	}
+
+	public void BeginGathering() {
+		isGathering = true;
+		if (LogEvents) { Debug.Log("GridCharacter: BeginGathering"); }
+	}
+
+	public void EndGathering() {
+		isGathering = false;
+		isIdle = true;
+		if (fsm != null) {
+			fsm.SendEvent("NextShootPhase");
+		}
+		characterMeta.ChangeActions(-1);
+		if (LogEvents) { Debug.Log("GridCharacter: EndGathering"); }
 	}
 
 	/*protected virtual void RotateTowards (Vector3 dir) {

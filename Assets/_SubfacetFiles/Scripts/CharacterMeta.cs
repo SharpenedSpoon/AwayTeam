@@ -9,11 +9,13 @@ public class CharacterMeta : MonoBehaviour {
 	public int Team = 0;
 	public int MoveNodeRange = 3;
 	public int ShootNodeRange = 10;
+	public int GatherNodeRange = 1;
 	public int MaxActions = 2;
 	[HideInInspector]
 	public int actions;
 	public float moveRange { get; private set; }
 	public float shootRange { get; private set; }
+	public float gatherRange { get; private set; }
 
 	private GridGraph gridGraph;
 	private float nodeSize;
@@ -27,6 +29,7 @@ public class CharacterMeta : MonoBehaviour {
 
 		moveRange = MoveNodeRange * nodeSize;
 		shootRange = ShootNodeRange * nodeSize;
+		gatherRange = GatherNodeRange * nodeSize;
 	}
 
 	void Update () {
