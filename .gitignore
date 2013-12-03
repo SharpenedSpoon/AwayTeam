@@ -1,3 +1,6 @@
 .DS_Store
 /Library
 /Temp
+/Assets/Beam/
+
+/Assets/Beam.meta

@@ -33,7 +33,9 @@ public class CharacterMeta : MonoBehaviour {
 	}
 
 	void Update () {
-	
+		if (Input.GetKeyDown(KeyCode.L)) {
+			Die ();
+		}
 	}
 	
 	public void GetShot(GameObject shooter) {
@@ -53,7 +55,12 @@ public class CharacterMeta : MonoBehaviour {
 	}
 	
 	public void Die() {
-		Destroy(gameObject);
+		var exploder = GetComponent<ExploderObject>();
+		if (exploder != null) {
+			exploder.Explode();
+		} else {
+			Destroy(gameObject);
+		}
 	}
 	
 	public bool IsValidTarget(GameObject target) {

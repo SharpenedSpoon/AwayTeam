@@ -32,6 +32,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 114: {fileID: 11400012}
   - 143: {fileID: 14300000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: EnemyCharacter
   m_TagString: GridObject
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 239.707321, y: 0, z: 272.002563}
+  m_LocalPosition: {x: 263.901154, y: 1.49011612e-08, z: 260.294922}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -114,6 +115,43 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b945f9aa6e0d3de46ab1fabcf3b510b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DontUseTag: 1
+  Radius: 10
+  ForceVector: {x: 0, y: 0, z: 0}
+  UseForceVector: 0
+  Force: 30
+  FrameBudget: 15
+  TargetFragments: 30
+  DeactivateOptions: 0
+  DeactivateTimeout: 10
+  FadeoutOptions: 0
+  MeshColliders: 0
+  ExplodeSelf: 1
+  HideSelf: 1
+  DestroyOriginalObject: 0
+  ExplodeFragments: 1
+  SplitMeshIslands: 0
+  FragmentPoolSize: 200
+  FragmentOptions:
+    FreezePositionX: 0
+    FreezePositionY: 0
+    FreezePositionZ: 0
+    FreezeRotationX: 0
+    FreezeRotationY: 0
+    FreezeRotationZ: 0
+    Layer: Default
+    Mass: 20
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2492,6 +2530,7 @@ MonoBehaviour:
   Team: 1
   MoveNodeRange: 3
   ShootNodeRange: 5
+  GatherNodeRange: 1
   MaxActions: 2
   actions: 0
 --- !u!114 &11400012
@@ -2506,6 +2545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasControl: 0
+  LogEvents: 0
   speed: 3000
   nextWaypointDistance: .5
 --- !u!143 &14300000
