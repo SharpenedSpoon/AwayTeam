@@ -55,6 +55,13 @@ public class GridCharacter : GridObject {
 			DeactivateCharacter();
 		}
 
+		if (Input.GetKey(KeyCode.L)) {
+			ExploderObject explode = GetComponent<ExploderObject>();
+			if (explode != null) {
+				explode.Explode();
+			}
+		}
+
 		/*if (hasControl) {
 			if (isIdle) {
 				if (Input.GetKeyDown(KeyCode.M)) {

@@ -1,6 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/Scripts/GridCharacter.cs">
+    <Files>
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridCharacter.cs" Line="57" Column="3" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/GridObject.cs" Line="35" Column="3" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
