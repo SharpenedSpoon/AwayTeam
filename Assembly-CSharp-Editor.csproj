@@ -46,15 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\AndroidPostProcessor.cs" />
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\CoherentExposeProperties.cs" />
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\CoherentPostProcessor.cs" />
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\CoherentSystemEditor.cs" />
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\CoherentUIInstaller.cs" />
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\CoherentViewEditor.cs" />
-     <Compile Include="Assets\CoherentUI\Editor\CoherentUI\IOSPostProcessor.cs" />
-     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample_MobileInput\Editor\AndroidProjectFixer.cs" />
-     <Compile Include="Assets\CoherentUI\Samples\Scenes\Sample_MobileInput\Editor\iOSSimulatorProjectFixer.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Editor\AstarPathEditor.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Editor\EditorGUIx.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Editor\EditorUtilities.cs" />
@@ -69,6 +60,15 @@
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Editor\ModifierEditors\SmoothModifierEditor.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Editor\OptimizationHandler.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Editor\SeekerEditor.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\AndroidPostProcessor.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\CoherentExposeProperties.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\CoherentPostProcessor.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\CoherentSystemEditor.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\CoherentUIInstaller.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\CoherentViewEditor.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Editor\CoherentUI\IOSPostProcessor.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Samples\Scenes\Sample_MobileInput\Editor\AndroidProjectFixer.cs" />
+     <Compile Include="Assets\GameAssets\CoherentUI\Samples\Scenes\Sample_MobileInput\Editor\iOSSimulatorProjectFixer.cs" />
      <Compile Include="Assets\GameAssets\NGUI\Examples\Scripts\InventorySystem\Editor\InvDatabaseInspector.cs" />
      <Compile Include="Assets\GameAssets\NGUI\Examples\Scripts\InventorySystem\Editor\InvFindItem.cs" />
      <Compile Include="Assets\GameAssets\NGUI\Scripts\Editor\ActiveAnimationEditor.cs" />
@@ -175,10 +175,10 @@
      <None Include="Assets\GameAssets\Digital Nature\Shader\BumpSpecularDoubleSided.shader" />
      <None Include="Assets\GameAssets\PlayMaker\Readme.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Text (SoftClip).shader" />
-     <None Include="Assets\CoherentUI\Copyright.txt" />
+     <None Include="Assets\GameAssets\CoherentUI\Copyright.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Dynamic Font (AlphaClip).shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Masked Colored.shader" />
-     <None Include="Assets\CoherentUI\Samples\Scenes\Sample06_Oculus\Readme.txt" />
+     <None Include="Assets\GameAssets\CoherentUI\Samples\Scenes\Sample06_Oculus\Readme.txt" />
      <None Include="Assets\GameAssets\Playmaker NGUI Scripts\Demo\Scrollbar Demo\Wooden\Arimo18.txt" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Plugins\DotNetZip\License.txt" />
      <None Include="Assets\GameAssets\iTween\ReadMe!\ReadMe!.txt" />
@@ -187,7 +187,7 @@
      <None Include="Assets\GameAssets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (AlphaClip).shader" />
      <None Include="Assets\GameAssets\Photon Unity Networking\Plugins\PhotonNetwork\library\Photon3Unity3D.xml" />
-     <None Include="Assets\Beam\Scripts\Simple Particle Scaler\Simple Particle Scaler - Readme.txt" />
+     <None Include="Assets\GameAssets\Beam\Scripts\Simple Particle Scaler\Simple Particle Scaler - Readme.txt" />
      <None Include="Assets\GameAssets\Photon Unity Networking\Plugins\PhotonNetwork\library\release_history.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Transparent Colored (AlphaClip).shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Text (AlphaClip).shader" />
@@ -199,7 +199,7 @@
      <None Include="Assets\GameAssets\Exploder\Demo\Shaders\VertexColor.shader" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\ExampleScenes\_Example Scenes.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Dynamic Font (SoftClip).shader" />
-     <None Include="Assets\Beam\Beams - Readme.txt" />
+     <None Include="Assets\GameAssets\Beam\Beams - Readme.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Transparent Colored (Packed) (SoftClip).shader" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored (SoftClip).shader" />
      <None Include="Assets\GameAssets\AstarPathfindingProject\Readme_upgrading.txt" />
@@ -226,7 +226,6 @@
      <None Include="Assets\GameAssets\Digital Nature\Shader\DoubleSidedButterfly.shader" />
      <None Include="Assets\GameAssets\NGUI\Examples\Atlases\Refractive\Refractive Font - Header.txt" />
      <None Include="Assets\GameAssets\NGUI\Examples\Shaders\Refractive.shader" />
-     <None Include="Assets\GameAssets\Cartoon Soldier\Readme.txt" />
      <None Include="Assets\GameAssets\HUD Text\Examples\Atlases\Large.txt" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth.shader" />
      <None Include="Assets\GameAssets\Standard Assets\Shaders\CoherentUI\TransparentDiffuseIgnoreZ.shader" />
