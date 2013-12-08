@@ -984,7 +984,10 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\CoherentUI\Detail\SystemListener.cs" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\CoherentUI\Detail\ViewListener.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
+     <Compile Include="Assets\GridDrawer.cs" />
      <Compile Include="Assets\GridManager.cs" />
+     <Compile Include="Assets\GridMouseInteraction.cs" />
+     <Compile Include="Assets\GridObject.cs" />
      <Compile Include="Assets\TakesTurns.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\HasHealth.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\Weapon.cs" />
