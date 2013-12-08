@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Pathfinding;
 using Vectrosity;
 
@@ -16,8 +17,8 @@ public class GridDrawer : MonoBehaviour {
 	public new static GridDrawer active;
 
 
-	public float drawAboveTerrainHeight = 0.1f;
-	public float drawForCharacterHeight = 1.0f;
+	private float drawAboveTerrainHeight = 0.1f;
+	private float drawForCharacterHeight = 2.5f;
 
 	void Awake() {
 		active = this;
@@ -34,12 +35,20 @@ public class GridDrawer : MonoBehaviour {
 	}
 
 	public void DrawNodeValid(Vector3 approximateNodePosition) {
-		DrawNode(approximateNodePosition, validColor);
+		DrawNode(approximateNodePosition, true);
     }
 
 	public void DrawNodeInvalid(Vector3 approximateNodePosition) {
-		DrawNode(approximateNodePosition, invalidColor);
+		DrawNode(approximateNodePosition, false);
     }
+
+	public void DrawNode(Vector3 approximateNodePosition, bool isValidNode) {
+		if (isValidNode) {
+			DrawNode(approximateNodePosition, validColor);
+		} else {
+			DrawNode (approximateNodePosition, invalidColor);
+		}
+	}
 
 	public void DrawNode(Vector3 approximateNodePosition, Color nodeColor) {
 		Vector3 nodeCenter = gridGraph.GetNearest(approximateNodePosition).clampedPosition;
@@ -55,7 +64,82 @@ public class GridDrawer : MonoBehaviour {
 	}
 
 	public void DrawPath(Vector3[] vectorPath) {
+		DrawPath(vectorPath, neutralColor);
+	}
 
+	public void DrawPath(Vector3[] vectorPath, int validPathLength) {
+		if (vectorPath.Length <= validPathLength + 1) {
+			// we can just draw the (valid) path straight up.
+			DrawPath(vectorPath, true);
+			return;
+		} else if (validPathLength <= 1) {
+			// we can just draw the (invalid) path straight up.
+			DrawPath(vectorPath, false);
+			return;
+		}
+
+		/* Example:
+		 *   validPathLength = 3
+		 * 
+		 *   Path:
+		 *    * -- * -- * -- * -- * -- * -- * -- *
+		 *    0    1    2    3    4    5    6    7
+		 *   |________________|
+		 *           |
+		 *        validPath
+		 *                  |_____________________|
+		 *                             |
+		 *                         invalidPath
+		 */
+
+		List<Vector3> validPath = new List<Vector3>();
+		List<Vector3> invalidPath = new List<Vector3>();
+
+		for (int i = 0; i < vectorPath.Length; i++) {
+			if (i < validPathLength) {
+				validPath.Add(vectorPath[i]);
+			} else if (i == validPathLength) {
+				validPath.Add(vectorPath[i]);
+				invalidPath.Add(vectorPath[i]);
+			} else {
+				invalidPath.Add(vectorPath[i]);
+			}
+		}
+
+		/*for (int i = 0; i <= validPathLength + 1; i++) {
+			validPath[i] = vectorPath[i];
+		}
+		for (int j = validPathLength + 1; j < vectorPath.Length; j++) {
+			invalidPath[j - (validPathLength + 1)] = vectorPath[j];
+		}*/
+
+		DrawPath(validPath.ToArray(), true);
+		DrawPath(invalidPath.ToArray(), false);
+	}
+	
+	public void DrawPathValid(Vector3[] vectorPath) {
+		DrawPath(vectorPath, true);
+	}
+	
+	public void DrawPathInvalid(Vector3[] vectorPath) {
+		DrawPath(vectorPath, false);
+	}
+	
+	public void DrawPath(Vector3[] vectorPath, bool isValidPath) {
+		if (isValidPath) {
+			DrawPath(vectorPath, validColor);
+		} else {
+			DrawPath(vectorPath, invalidColor);
+		}
+	}
+
+	public void DrawPath(Vector3[] vectorPath, Color pathColor) {
+		if (vectorPath.Length <= 1) {
+			// we don't have enough points to draw
+			return;
+		}
+
+		Vectrosity.VectorLine.SetLine3D(pathColor, 0.01f, AddToArray(drawForCharacterHeight * Vector3.up, vectorPath));
 	}
 
 	private Vector3[] AddToArray(Vector3 vec, Vector3[] array) {

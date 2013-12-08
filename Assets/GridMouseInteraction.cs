@@ -4,7 +4,7 @@ using Pathfinding;
 
 public class GridMouseInteraction : MonoBehaviour {
 
-	private Vector3 currentNodePosition;
+	public Vector3 currentNodePosition { get; private set; }
 	private RaycastHit hit;
 	private Terrain terrain;
 	private GridGraph gridGraph;
@@ -42,11 +42,7 @@ public class GridMouseInteraction : MonoBehaviour {
 		}
 
 		if (drawMouseNode) {
-			if (validState) {
-				gridDrawer.DrawNodeValid(currentNodePosition);
-			} else {
-				gridDrawer.DrawNodeInvalid(currentNodePosition);
-			}
+			gridDrawer.DrawNode(currentNodePosition, validState);
 		}
 
 	}

@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\CanAimOnGrid.cs" />
      <Compile Include="Assets\CanFireWeapon.cs" />
+     <Compile Include="Assets\CanMoveOnGrid.cs" />
+     <Compile Include="Assets\CanPlanGridMovement.cs" />
      <Compile Include="Assets\CharacterSheet.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\AIPath.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
@@ -988,6 +990,7 @@
      <Compile Include="Assets\GridManager.cs" />
      <Compile Include="Assets\GridMouseInteraction.cs" />
      <Compile Include="Assets\GridObject.cs" />
+     <Compile Include="Assets\PlayerKeyboardMouseInteraction.cs" />
      <Compile Include="Assets\TakesTurns.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\HasHealth.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\Weapon.cs" />
