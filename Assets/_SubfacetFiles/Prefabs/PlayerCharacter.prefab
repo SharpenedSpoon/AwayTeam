@@ -27,6 +27,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400002}
+  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400000}
   m_Layer: 0
@@ -109,10 +111,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b987d05a9ca945469e4b00a23af7e1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 62cfd3b338b1c444eba8e38a9f7cf134, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 3
+  aim: 5
+  critical: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,9 +161,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 070ac344c75ab4bafafaddbd105b7325, type: 3}
+  m_Script: {fileID: 11500000, guid: f8ee547287f874537ad024fc54fc934c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc43a52265da246a2833c8f0b2c393ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangeInNodes: 5
+  minDamage: 1
+  maxDamage: 2
+  criticalChance: .100000001
+  criticalBonusDamageScale: .5
+  usesAmmo: 1
+  maxAmmo: 10
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83cba8e0f159e4c4a87e661e109930ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHP: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
