@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (CanFireWeapon))]
+[RequireComponent (typeof (GridManager))]
+[RequireComponent (typeof (GridDrawer))]
+
 public class CanAimOnGrid : MonoBehaviour {
 
 	private CanFireWeapon weaponFire;
 	private GridManager gridManager;
 	private GridDrawer gridDrawer;
-	private CharacterSheet characterSheet = null;
 
 	public Vector3 currentNodePosition;
 	public Vector3 targetPosition;

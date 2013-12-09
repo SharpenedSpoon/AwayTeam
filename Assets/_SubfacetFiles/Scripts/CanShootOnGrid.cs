@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (CanAimOnGrid))]
+[RequireComponent (typeof (CanFireWeapon))]
+
 public class CanShootOnGrid : MonoBehaviour {
 
 	private CanAimOnGrid gridAimer;

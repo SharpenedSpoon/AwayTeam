@@ -2,6 +2,8 @@
 using System.Collections;
 using Pathfinding;
 
+[RequireComponent (typeof (Seeker))]
+
 public class CanPlanGridMovement : MonoBehaviour {
 
 	public Vector3 targetPosition;

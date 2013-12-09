@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Seeker))]
+[RequireComponent (typeof (CanPlanGridMovement))]
+
 public class CanMoveOnGrid : MonoBehaviour {
 
 	public bool isMoving = false;

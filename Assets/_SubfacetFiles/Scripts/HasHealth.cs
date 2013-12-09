@@ -5,16 +5,19 @@ public class HasHealth : MonoBehaviour {
 
 	public int maxHP = 4;
 	public int health { get; private set; }
+
+	public bool explodeOnDeath = true;
+	private ExploderObject exploderObject = null;
 	
 	void Start() {
 		ResetHealth();
+		exploderObject = GetComponent<ExploderObject>();
 	}
 
 	/** Take damage. Returns whether or not this damage was fatal
 	 */
 	public bool TakeDamage(int dmg) {
 		health -= dmg;
-		Debug.Log ("Got shot. Bullets! My only weakness... how did you know?");
 		if (health <= 0) {
 			Die();
 			return true;
@@ -37,6 +40,10 @@ public class HasHealth : MonoBehaviour {
 	}
 
 	private void Die() {
-		Destroy(gameObject);
+		if (explodeOnDeath && exploderObject != null) {
+			exploderObject.Explode();
+		} else {
+			Destroy(gameObject);
+		}
 	}
 }
