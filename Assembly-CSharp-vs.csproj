@@ -46,11 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CanAimOnGrid.cs" />
-     <Compile Include="Assets\CanFireWeapon.cs" />
-     <Compile Include="Assets\CanMoveOnGrid.cs" />
-     <Compile Include="Assets\CanPlanGridMovement.cs" />
-     <Compile Include="Assets\CharacterSheet.cs" />
+     <Compile Include="Assets\CanShootOnGrid.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\AIPath.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\NavmeshController.cs" />
      <Compile Include="Assets\GameAssets\AstarPathfindingProject\Core\AI\Seeker.cs" />
@@ -986,13 +982,18 @@
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\CoherentUI\Detail\SystemListener.cs" />
      <Compile Include="Assets\GameAssets\Standard Assets\Scripts\CoherentUI\Detail\ViewListener.cs" />
      <Compile Include="Assets\GameAssets\iTween\iTween.cs" />
-     <Compile Include="Assets\GridDrawer.cs" />
-     <Compile Include="Assets\GridManager.cs" />
-     <Compile Include="Assets\GridMouseInteraction.cs" />
-     <Compile Include="Assets\GridObject.cs" />
-     <Compile Include="Assets\PlayerKeyboardMouseInteraction.cs" />
-     <Compile Include="Assets\TakesTurns.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\CanAimOnGrid.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\CanFireWeapon.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\CanMoveOnGrid.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\CanPlanGridMovement.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\CharacterSheet.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\GridDrawer.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\GridManager.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\GridMouseInteraction.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\GridObject.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\HasHealth.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\PlayerKeyboardMouseInteraction.cs" />
+     <Compile Include="Assets\_SubfacetFiles\Scripts\TakesTurns.cs" />
      <Compile Include="Assets\_SubfacetFiles\Scripts\Weapon.cs" />
      <None Include="Assets\GameAssets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\GameAssets\Photon Unity Networking\PlayMaker\ReleaseNotes.txt" />

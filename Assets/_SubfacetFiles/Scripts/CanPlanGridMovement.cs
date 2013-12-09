@@ -66,7 +66,12 @@ public class CanPlanGridMovement : MonoBehaviour {
 	 */
 	public bool EndPlanningMovement() {
 		isPlanningMovement = false;
-		return hasValidPath();
+		if (hasValidPath()) {
+			return true;
+		} else {
+			isDrawingMovement = false;
+			return false;
+		}
     }
 
 	public bool hasValidPath() {

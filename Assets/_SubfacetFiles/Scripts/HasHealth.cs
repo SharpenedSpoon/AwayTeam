@@ -14,6 +14,7 @@ public class HasHealth : MonoBehaviour {
 	 */
 	public bool TakeDamage(int dmg) {
 		health -= dmg;
+		Debug.Log ("Got shot. Bullets! My only weakness... how did you know?");
 		if (health <= 0) {
 			Die();
 			return true;

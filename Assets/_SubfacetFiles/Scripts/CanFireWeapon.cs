@@ -30,15 +30,18 @@ public class CanFireWeapon : MonoBehaviour {
 	/** Possibly shoot at a target game object. Returns
 	 * a bool for whether or not the shot hit.
 	 */
-	public bool Fire(GameObject targetObject) {
+	public bool Shoot(GameObject targetObject) {
 		HasHealth targetHealth = targetObject.GetComponent<HasHealth>();
 		if (targetHealth == null) {
+			Debug.Log("Tried to shoot, but target had no health");
 			return false;
 		}
 
-		if (weapon.HasAmmo() || Random.Range(0.0f, 1.0f) >= aimChance) {
+		if (!weapon.HasAmmo() || Random.Range(0.0f, 1.0f) >= aimChance) {
+			Debug.Log("Shot, and missed!");
 			return false;
 		} else {
+			Debug.Log("Shot, and hit!");
 			ShootAtTarget(targetHealth);
 			weapon.ExpendAmmo(1);
 			return true;

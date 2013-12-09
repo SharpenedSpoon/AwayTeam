@@ -19,6 +19,7 @@ public class CanAimOnGrid : MonoBehaviour {
 	private Vector3[] aimPath;
 	private float aimHeight = 1.0f;
 	private Vector3 aimLevel;
+	public GameObject currentTarget = null;
 
 	RaycastHit hit;
 
@@ -38,11 +39,12 @@ public class CanAimOnGrid : MonoBehaviour {
 				targetPosition = currentNodePosition;
 				Vector3 targetLevel = targetPosition + (aimHeight * Vector3.up);
 				float shootRange = weaponFire.weapon.rangeInNodes * nodeSize;
+				currentTarget = null;
 
 				// figure out if the thing we're aiming at is a valid target
 				if (!gridManager.IsNodeFree(targetPosition)) {
-					GameObject thisTarget = gridManager.GetGraphObject(targetPosition);
-					if (!thisTarget.CompareTag(gameObject.tag)) {
+					currentTarget = gridManager.GetGraphObject(targetPosition);
+					if (!currentTarget.CompareTag(gameObject.tag)) {
 						validTarget = true;
 					} else {
 						validTarget = false;
@@ -90,5 +92,17 @@ public class CanAimOnGrid : MonoBehaviour {
 		nodeSize = gridDrawer.nodeSize;
 		aimHeight = gridDrawer.drawForCharacterHeight;
 		aimLevel = transform.position + (aimHeight * Vector3.up);
+	}
+
+	/**Returns whether or not we can shoot at the target
+	 */
+	public bool EndAiming() {
+		isAiming = false;
+		if (targetInRange && clearLineOfSight && validTarget) {
+			return true;
+		} else {
+			isDrawingAim = false;
+			return false;
+		}
 	}
 }

@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour {
 	}
 
 	public bool HasAmmo() {
-		return (ammo > 0); 
+		return (!usesAmmo || ammo > 0); 
 	}
 	
 }

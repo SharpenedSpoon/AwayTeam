@@ -1,16 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PlayerKeyboardMouseInteraction.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_SubfacetFiles/Scripts/CanFireWeapon.cs">
     <Files>
-      <File FileName="Assets/GridDrawer.cs" Line="83" Column="31" />
-      <File FileName="Assets/GridMouseInteraction.cs" Line="7" Column="57" />
-      <File FileName="Assets/CharacterSheet.cs" Line="11" Column="25" />
-      <File FileName="Assets/CanMoveOnGrid.cs" Line="6" Column="31" />
-      <File FileName="Assets/PlayerKeyboardMouseInteraction.cs" Line="46" Column="14" />
-      <File FileName="Assets/CanAimOnGrid.cs" Line="26" Column="39" />
-      <File FileName="Assets/CanFireWeapon.cs" Line="15" Column="43" />
-      <File FileName="Assets/GridManager.cs" Line="28" Column="6" />
-      <File FileName="Assets/_SubfacetFiles/Scripts/Weapon.cs" Line="6" Column="25" />
+      <File FileName="Assets/CanShootOnGrid.cs" Line="17" Column="34" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/CanFireWeapon.cs" Line="8" Column="27" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/CanAimOnGrid.cs" Line="73" Column="28" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/PlayerKeyboardMouseInteraction.cs" Line="50" Column="59" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/HasHealth.cs" Line="18" Column="21" />
+      <File FileName="Assets/_SubfacetFiles/Scripts/Weapon.cs" Line="40" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

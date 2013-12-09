@@ -9,12 +9,14 @@ public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 	private CanMoveOnGrid gridMovement;
 
 	private CanAimOnGrid gridAimer;
+	private CanShootOnGrid gridShooter;
 
 	void Start () {
 		gridMovementPlanner = GetComponent<CanPlanGridMovement>();
 		gridMovement = GetComponent<CanMoveOnGrid>();
 
 		gridAimer = GetComponent<CanAimOnGrid>();
+		gridShooter = GetComponent<CanShootOnGrid>();
 	}
 
 	void Update () {
@@ -36,15 +38,22 @@ public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 							// we want to start moving
 							gridMovement.BeginMovement();
                         } else {
-                            // cancel movement, stop drawing the path.
-                            gridMovementPlanner.isDrawingMovement = false;
+                            // cancel movement
                         }
                     }
                 } else if (gridAimer.isAiming) {
 					gridAimer.currentNodePosition = GridMouseInteraction.active.currentNodePosition;
+					// wait for the player to confirm where they want to shoot
+					if (Input.GetMouseButtonDown(0)) {
+						if (gridAimer.EndAiming()) {
+							// we want to shoot
+							gridShooter.BeginShooting(gridAimer.currentTarget);
+						} else {
+							// cancel aiming
+						}
+					}
 				}
             }
 		}
-
 	}
 }
