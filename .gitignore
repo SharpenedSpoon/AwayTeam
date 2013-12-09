@@ -5,3 +5,16 @@
 
 /Assets/Beam.meta
 *.meta
+
+/Assembly-CSharp-Editor-vs.csproj
+/Assembly-CSharp-Editor.csproj
+/Assembly-CSharp-vs.csproj
+/Assembly-CSharp.csproj
+/Assembly-UnityScript-Editor-vs.unityproj
+/Assembly-UnityScript-Editor.unityproj
+/Assembly-UnityScript-vs.unityproj
+/Assembly-UnityScript.unityproj
+
+/AwayTeam-csharp.sln
+/AwayTeam-csharp.userprefs
+/AwayTeam.sln

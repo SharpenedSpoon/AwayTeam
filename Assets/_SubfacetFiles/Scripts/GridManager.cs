@@ -33,12 +33,6 @@ public class GridManager : MonoBehaviour {
         if (gridGraph == null) {
 			gridGraph = AstarPath.active.astarData.gridGraph;
 		}
-		Debug.Log ("go.transform.position");
-		Debug.Log (go.transform.position);
-		Debug.Log ("go.transform.position");
-		Debug.Log (gridGraph.GetNearest(go.transform.position));
-		Debug.Log ("go.transform.position");
-		Debug.Log (gridGraph.GetNearest(go.transform.position).clampedPosition);
 		Vector3 closestNodePosition = gridGraph.GetNearest(go.transform.position).clampedPosition;
 		if (graphObjects.ContainsKey(go)) {
 			graphObjects[go] = closestNodePosition;

@@ -41,6 +41,7 @@ public class CanFireWeapon : MonoBehaviour {
 			Debug.Log("Shot, and missed!");
 			return false;
 		} else {
+			// TODO: Before shooting, add a small wait time and simple effects
 			Debug.Log("Shot, and hit!");
 			ShootAtTarget(targetHealth);
 			weapon.ExpendAmmo(1);
