@@ -12,7 +12,6 @@ GameObject:
   - 92: {fileID: 9200000}
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
-  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -74,42 +73,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15780473129e394db2b927dd8e5e960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Page: coui://SubfacetUIResources/MissionUI/index.html
-  m_Width: 1336
-  m_Height: 768
-  m_XPos: 0
-  m_YPos: 0
-  m_ScaleToFit: 0
-  m_InitialScript: 
-  m_ViewInputState: 2
-  m_IsTransparent: 1
-  m_SupportClickThrough: 1
-  m_ClickThroughAlphaThreshold: 0
-  m_ClickToFocus: 0
-  m_IsOnDemand: 0
-  m_ControlTimeOnDemand: 0
-  m_TargetFramerate: 60
-  m_DrawAfterPostEffects: 0
-  m_FlipY: 0
-  m_ReceivesInput: 0
-  m_InterceptAllEvents: 0
-  m_EnableBindingAttribute: 0
-  m_IsIndependentOfZBuffer: 0
-  m_ShowJavaScriptDialogs: 1
-  m_ForceSoftwareRendering: 0
-  m_UseCameraDimensions: 1
-  m_CorrectGamma: 0
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
