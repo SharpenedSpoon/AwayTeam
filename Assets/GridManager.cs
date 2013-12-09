@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
@@ -25,10 +26,6 @@ public class GridManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-    
-    void Update () {
-	
-	}
 
 	/**Sets or updates the (internally tracked) position of a gameobject.
 	 */
@@ -58,6 +55,15 @@ public class GridManager : MonoBehaviour {
 		/*} else {
 			return null;
 		}*/
+	}
+
+	/**Return the FIRST (not necessarily the only) game object at the given position
+	 */
+	public GameObject GetGraphObject(Vector3 vec) {
+		if (IsNodeFree(vec)) {
+			return null;
+		}
+		return graphObjects.FirstOrDefault(x => x.Value == vec).Key;
 	}
 
 	/**Given a position, returns whether or not the nearest node has any objects on it

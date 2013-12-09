@@ -12,7 +12,7 @@ public class CanFireWeapon : MonoBehaviour {
 	private float criticalChance = 0.0f;
 	private float criticalScale = 0.0f;
 
-	private Weapon weapon;
+	public Weapon weapon { get; private set; }
 	private CharacterSheet characterSheet = null;
 	
 	void Start() {

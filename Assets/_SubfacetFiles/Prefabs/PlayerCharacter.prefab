@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 95: {fileID: 9500000}
   - 114: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sharpenedspoon_player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400020}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,6 +125,7 @@ MonoBehaviour:
   critical: 1
   moveSpeed: 30
   moveRange: 3
+  height: 2
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +226,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aa05d18877714b9abf441278bcb0e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentNodePosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  nodeSize: 0
+  isAiming: 1
+  isDrawingAim: 1
+  validTarget: 0
+  clearLineOfSight: 0
+  targetInRange: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -280,6 +289,7 @@ MonoBehaviour:
   isPlanningMovement: 0
   isDrawingMovement: 0
   moveRange: 0
+  currentNodePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &11400020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24491286d15c44a899db25ad924ebc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 1
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1

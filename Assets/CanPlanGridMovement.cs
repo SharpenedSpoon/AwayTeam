@@ -15,6 +15,8 @@ public class CanPlanGridMovement : MonoBehaviour {
 
 	private Seeker seeker;
 	private CharacterSheet characterSheet = null;
+
+	public Vector3 currentNodePosition;
 	
 	void Start () {
 		seeker = GetComponent<Seeker>();
@@ -27,8 +29,8 @@ public class CanPlanGridMovement : MonoBehaviour {
 
 	void Update () {
 		if (isPlanningMovement) {
-			if (targetPosition != GridMouseInteraction.active.currentNodePosition) {
-				targetPosition = GridMouseInteraction.active.currentNodePosition;
+			if (targetPosition != currentNodePosition) {
+				targetPosition = currentNodePosition;
 				seeker.StartPath(transform.position, targetPosition, OnPathComplete);
 			}
 		}

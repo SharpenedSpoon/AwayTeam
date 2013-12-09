@@ -8,4 +8,6 @@ public class CharacterSheet : MonoBehaviour {
 	public float moveSpeed = 30.0f;
 	public int moveRange = 3;
 
+	public float height = 2.0f;
+
 }

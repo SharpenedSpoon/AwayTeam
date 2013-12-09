@@ -11,23 +11,31 @@ public class GridDrawer : MonoBehaviour {
 	public Color invalidColor = Color.red;
 
 	private GridGraph gridGraph = null;
-	private float nodeSize = 0.0f;
+	private CharacterSheet characterSheet = null;
+
+	public float nodeSize { get; private set; }
 	private Terrain terrain = null;
 
 	public new static GridDrawer active;
 
 
 	private float drawAboveTerrainHeight = 0.1f;
-	private float drawForCharacterHeight = 2.5f;
+	public float drawForCharacterHeight { get; private set; }
 
 	void Awake() {
 		active = this;
 	}
 
 	void Start () {
+		drawForCharacterHeight = 2.5f;
 		gridGraph = AstarPath.active.astarData.gridGraph;
 		nodeSize = gridGraph.nodeSize;
 		terrain = Terrain.activeTerrain;
+
+		characterSheet = GetComponent<CharacterSheet>();
+		if (characterSheet != null) {
+			drawForCharacterHeight = 0.5f * characterSheet.height;
+		}
 	}
 
 	public void DrawNode(Vector3 approximateNodePosition) {
@@ -72,7 +80,7 @@ public class GridDrawer : MonoBehaviour {
 			// we can just draw the (valid) path straight up.
 			DrawPath(vectorPath, true);
 			return;
-		} else if (validPathLength <= 1) {
+		} else if (validPathLength < 1) {
 			// we can just draw the (invalid) path straight up.
 			DrawPath(vectorPath, false);
 			return;
@@ -143,9 +151,9 @@ public class GridDrawer : MonoBehaviour {
 	}
 
 	private Vector3[] AddToArray(Vector3 vec, Vector3[] array) {
-		Vector3[] output = array;
-		for (int i=0; i<output.Length; i++) {
-			output[i] = output[i] + vec;
+		Vector3[] output = new Vector3[array.Length];
+		for (int i=0; i<array.Length; i++) {
+			output[i] = array[i] + vec;
 		}
 		return output;
 	}
