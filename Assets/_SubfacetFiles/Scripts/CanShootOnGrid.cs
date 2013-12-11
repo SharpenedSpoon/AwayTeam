@@ -18,6 +18,10 @@ public class CanShootOnGrid : MonoBehaviour {
 		// eventually this will be a bit more complex.
 		weaponShooter.Shoot(targetObject);
 		gridAimer.isDrawingAim = false;
-		Debug.Log("Bang!");
+		EndShooting();
+	}
+
+	public void EndShooting() {
+		SendMessage("DoneWithAction");
 	}
 }

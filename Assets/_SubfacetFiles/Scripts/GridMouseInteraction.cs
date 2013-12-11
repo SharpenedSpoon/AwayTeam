@@ -30,10 +30,6 @@ public class GridMouseInteraction : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.F)) {
-			followMouse = followMouse ? false : true;
-		}
-
 		if (followMouse) {
 			if (getMouseNode() != currentNodePosition) {
 				currentNodePosition = getMouseNode();

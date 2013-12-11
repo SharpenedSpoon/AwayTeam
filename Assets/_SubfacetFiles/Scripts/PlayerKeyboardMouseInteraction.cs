@@ -9,7 +9,7 @@ using System.Collections;
 
 public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 
-	public bool isActive = true;
+	public bool isActive = false;
 
 	private CanPlanGridMovement gridMovementPlanner;
 	private CanMoveOnGrid gridMovement;
@@ -31,10 +31,10 @@ public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 
 	void Update () {
 
-		if (isActive) {
-			if (turns.OutOfActions()) {
+		if (turns.isActive) {
+			/*if (turns.OutOfActions()) {
 				isActive = false;
-			}
+			}*/
 			if (!(gridMovementPlanner.isPlanningMovement || gridMovement.isMoving || gridAimer.isAiming)) {
 				// if out of actions, we need to deactive the character
 				// wait for this character to want to do something
@@ -51,7 +51,7 @@ public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 						if (gridMovementPlanner.EndPlanningMovement()) {
 							// we want to start moving
 							gridMovement.BeginMovement();
-							turns.TakeTurn();
+							//turns.TakeTurn();
                         } else {
                             // cancel movement
                         }
@@ -63,7 +63,7 @@ public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 						if (gridAimer.EndAiming()) {
 							// we want to shoot
 							gridShooter.BeginShooting(gridAimer.currentTarget);
-							turns.TakeTurn();
+							//turns.TakeTurn();
 						} else {
 							// cancel aiming
 						}

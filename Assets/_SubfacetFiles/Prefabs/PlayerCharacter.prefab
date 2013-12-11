@@ -38,6 +38,7 @@ GameObject:
   - 114: {fileID: 11400016}
   - 114: {fileID: 11400022}
   - 114: {fileID: 11400020}
+  - 114: {fileID: 11400024}
   m_Layer: 9
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -204,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 4
+  explodeOnDeath: 1
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -229,8 +231,9 @@ MonoBehaviour:
   currentNodePosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   nodeSize: 0
-  isAiming: 1
-  isDrawingAim: 1
+  isAiming: 0
+  isDrawingAim: 0
+  currentTarget: {fileID: 0}
   validTarget: 0
   clearLineOfSight: 0
   targetInRange: 0
@@ -246,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxTurns: 2
+  isActive: 0
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24491286d15c44a899db25ad924ebc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 1
+  isActive: 0
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -316,6 +320,17 @@ MonoBehaviour:
   isMoving: 0
   moveRange: 0
   moveSpeed: 30
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f64e999dc7ad4a9ea32f5b9f6f2b577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

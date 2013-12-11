@@ -48,6 +48,7 @@ public class CanMoveOnGrid : MonoBehaviour {
 	}
 
 	public void EndMovement() {
+		SendMessage("DoneWithAction");
 		isMoving = false;
 	}
 
@@ -56,10 +57,10 @@ public class CanMoveOnGrid : MonoBehaviour {
 			// we want to go to next waypoint. also, update our position in the grid.
 			currentWaypoint++;
 			gridManager.SetGraphObjectPosition(gameObject);
-			if (currentWaypoint > moveRange) {
+			if (currentWaypoint > moveRange || currentWaypoint >= vectorPath.Length) {
 				// stop moving, stop drawing the movement path, and reset to our clamped position
 				transform.position = gridManager.GetGraphObjectPosition(gameObject);
-				isMoving = false;
+				EndMovement();
 				gridMovementPlanner.isDrawingMovement = false;
 				return;
 			}
