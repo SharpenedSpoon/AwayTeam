@@ -9,14 +9,12 @@ using System.Collections;
 
 public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 
-	public bool isActive = false;
-
 	private CanPlanGridMovement gridMovementPlanner;
 	private CanMoveOnGrid gridMovement;
-
+	
 	private CanAimOnGrid gridAimer;
 	private CanShootOnGrid gridShooter;
-
+	
 	private TakesTurns turns;
 
 	void Start () {
@@ -32,11 +30,7 @@ public class PlayerKeyboardMouseInteraction : MonoBehaviour {
 	void Update () {
 
 		if (turns.isActive) {
-			/*if (turns.OutOfActions()) {
-				isActive = false;
-			}*/
 			if (!(gridMovementPlanner.isPlanningMovement || gridMovement.isMoving || gridAimer.isAiming)) {
-				// if out of actions, we need to deactive the character
 				// wait for this character to want to do something
 				if (Input.GetKeyDown(KeyCode.Alpha1)) {
 					gridMovementPlanner.BeginPlanningMovement();

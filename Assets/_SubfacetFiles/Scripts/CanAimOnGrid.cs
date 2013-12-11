@@ -40,40 +40,16 @@ public class CanAimOnGrid : MonoBehaviour {
 		if (isAiming) {
 			if (targetPosition != currentNodePosition) {
 				targetPosition = currentNodePosition;
-				Vector3 targetLevel = targetPosition + (aimHeight * Vector3.up);
-				float shootRange = weaponFire.weapon.rangeInNodes * nodeSize;
 				currentTarget = null;
 
 				// figure out if the thing we're aiming at is a valid target
-				if (!gridManager.IsNodeFree(targetPosition)) {
-					currentTarget = gridManager.GetGraphObject(targetPosition);
-					if (!currentTarget.CompareTag(gameObject.tag)) {
-						validTarget = true;
-					} else {
-						validTarget = false;
-					}
-				}
 
-				// figure out if we can see the target
-				if (Physics.Raycast(aimLevel, targetLevel - aimLevel, out hit, Vector3.Distance(transform.position, targetLevel), ~(1 << gameObject.layer))) {
-					clearLineOfSight = false;
-					aimPath = new Vector3[3];
-					aimPath[0] = transform.position;
-					aimPath[1] = hit.point;
-					aimPath[1].y = Terrain.activeTerrain.SampleHeight(aimPath[1]);
-					aimPath[2] = targetPosition;
-				} else {
-					clearLineOfSight = true;
-					aimPath = new Vector3[2];
-					aimPath[0] = transform.position;
-					aimPath[1] = targetPosition;
-				}
+				FindAimTarget();
 
-				// if target in range?
-				if (Vector3.Distance(aimLevel, targetLevel) <= shootRange) {
-					targetInRange = true;
-				} else {
-					targetInRange = false;
+				if (currentTarget != null) {
+					validTarget = IsValidTarget(currentTarget);
+					clearLineOfSight = HasLineOfSight(currentTarget);
+					targetInRange = InRange(currentTarget);
 				}
 			}
 		}
@@ -84,6 +60,40 @@ public class CanAimOnGrid : MonoBehaviour {
 			}
 		}
 	
+	}
+
+	public bool IsValidTarget(GameObject testObject) {
+		return (!testObject.CompareTag(gameObject.tag));
+	}
+
+	public bool HasLineOfSight(GameObject testObject) {
+		bool output = false;
+		Vector3 targetLevel = testObject.transform.position + (aimHeight * Vector3.up);
+		float shootRange = weaponFire.weapon.rangeInNodes * nodeSize;
+		if (Physics.Raycast(aimLevel, targetLevel - aimLevel, out hit, Vector3.Distance(transform.position, targetLevel), ~(1 << gameObject.layer))) {
+			output = false;
+			aimPath = new Vector3[3];
+			aimPath[0] = transform.position;
+			aimPath[1] = hit.point;
+			aimPath[1].y = Terrain.activeTerrain.SampleHeight(aimPath[1]);
+			aimPath[2] = targetPosition;
+		} else {
+			output = true;
+			aimPath = new Vector3[2];
+			aimPath[0] = transform.position;
+			aimPath[1] = targetPosition;
+		}
+		return output;
+	}
+
+	public bool InRange(GameObject testObject) {
+		Vector3 targetLevel = testObject.transform.position + (aimHeight * Vector3.up);
+		float shootRange = weaponFire.weapon.rangeInNodes * nodeSize;
+		return Vector3.Distance(aimLevel, targetLevel) <= shootRange;
+	}
+
+	public bool CanShootTarget(GameObject testObject) {
+		return (IsValidTarget(testObject) && HasLineOfSight(testObject) && InRange(testObject));
 	}
 
 	public void BeginAiming() {
@@ -97,11 +107,17 @@ public class CanAimOnGrid : MonoBehaviour {
 		aimLevel = transform.position + (aimHeight * Vector3.up);
 	}
 
+	public void FindAimTarget() {
+		if (!gridManager.IsNodeFree(targetPosition)) {
+			currentTarget = gridManager.GetGraphObject(targetPosition);
+		}
+	}
+
 	/**Returns whether or not we can shoot at the target
 	 */
 	public bool EndAiming() {
 		isAiming = false;
-		if (targetInRange && clearLineOfSight && validTarget) {
+		if (currentTarget != null && CanShootTarget(currentTarget)) {
 			return true;
 		} else {
 			isDrawingAim = false;
